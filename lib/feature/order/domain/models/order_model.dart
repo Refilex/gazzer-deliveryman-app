@@ -78,6 +78,7 @@ class OrderModel {
   double? additionalCharge;
   double? extraPackagingAmount;
   double? referrerBonusAmount;
+  List<Restaurant>? restaurants;
 
   OrderModel({
     this.id,
@@ -125,6 +126,7 @@ class OrderModel {
     this.additionalCharge,
     this.extraPackagingAmount,
     this.referrerBonusAmount,
+    this.restaurants,
   });
 
   OrderModel.fromJson(Map<String, dynamic> json) {
@@ -197,6 +199,11 @@ class OrderModel {
     additionalCharge = json['additional_charge']?.toDouble() ?? 0;
     extraPackagingAmount = json['extra_packaging_amount']?.toDouble();
     referrerBonusAmount = json['ref_bonus_amount']?.toDouble();
+
+    restaurants = (json['restaurants'] as List?)
+        ?.map((item) => Restaurant.fromJson(item))
+        .toList() ?? [];
+
   }
 
   Map<String, dynamic> toJson() {
@@ -251,6 +258,7 @@ class OrderModel {
     data['additional_charge'] = additionalCharge;
     data['extra_packaging_amount'] = extraPackagingAmount;
     data['ref_bonus_amount'] = referrerBonusAmount;
+    data['restaurants'] = restaurants;
     return data;
   }
 }
@@ -415,4 +423,240 @@ class Payments {
     data['updated_at'] = updatedAt;
     return data;
   }
+}
+
+class Restaurant {
+  int id;
+  String name;
+  String phone;
+  String email;
+  String logo;
+  String latitude;
+  String longitude;
+  String address;
+  dynamic footerText;
+  int minimumOrder;
+  int? comission;
+  bool scheduleOrder;
+  dynamic openingTime;
+  dynamic closeingTime;
+  int status;
+  int vendorId;
+  DateTime createdAt;
+  DateTime updatedAt;
+  bool freeDelivery;
+  List<int> rating;
+  String coverPhoto;
+  bool delivery;
+  bool takeAway;
+  bool foodSection;
+  int tax;
+  int zoneId;
+  dynamic categoryId;
+  bool reviewsSection;
+  bool active;
+  String offDay;
+  int selfDeliverySystem;
+  bool posSystem;
+  int minimumShippingCharge;
+  String deliveryTime;
+  int veg;
+  int nonVeg;
+  int orderCount;
+  int totalOrder;
+  dynamic perKmShippingCharge;
+  String restaurantModel;
+  dynamic maximumShippingCharge;
+  String slug;
+  bool orderSubscriptionActive;
+  bool cutlery;
+  dynamic metaTitle;
+  dynamic metaDescription;
+  dynamic metaImage;
+  int announcement;
+  dynamic announcementMessage;
+  dynamic qrCode;
+  dynamic additionalData;
+  dynamic additionalDocuments;
+  bool gstStatus;
+  String gstCode;
+  bool freeDeliveryDistanceStatus;
+  String freeDeliveryDistanceValue;
+
+  Restaurant({
+    required this.id,
+    required this.name,
+    required this.phone,
+    required this.email,
+    required this.logo,
+    required this.latitude,
+    required this.longitude,
+    required this.address,
+    required this.footerText,
+    required this.minimumOrder,
+    required this.comission,
+    required this.scheduleOrder,
+    required this.openingTime,
+    required this.closeingTime,
+    required this.status,
+    required this.vendorId,
+    required this.createdAt,
+    required this.updatedAt,
+    required this.freeDelivery,
+    required this.rating,
+    required this.coverPhoto,
+    required this.delivery,
+    required this.takeAway,
+    required this.foodSection,
+    required this.tax,
+    required this.zoneId,
+    required this.categoryId,
+    required this.reviewsSection,
+    required this.active,
+    required this.offDay,
+    required this.selfDeliverySystem,
+    required this.posSystem,
+    required this.minimumShippingCharge,
+    required this.deliveryTime,
+    required this.veg,
+    required this.nonVeg,
+    required this.orderCount,
+    required this.totalOrder,
+    required this.perKmShippingCharge,
+    required this.restaurantModel,
+    required this.maximumShippingCharge,
+    required this.slug,
+    required this.orderSubscriptionActive,
+    required this.cutlery,
+    required this.metaTitle,
+    required this.metaDescription,
+    required this.metaImage,
+    required this.announcement,
+    required this.announcementMessage,
+    required this.qrCode,
+    required this.additionalData,
+    required this.additionalDocuments,
+    required this.gstStatus,
+    required this.gstCode,
+    required this.freeDeliveryDistanceStatus,
+    required this.freeDeliveryDistanceValue,
+  });
+
+  factory Restaurant.fromJson(Map<String, dynamic> json) => Restaurant(
+        id: json["id"],
+        name: json["name"],
+        phone: json["phone"],
+        email: json["email"],
+        logo: json["logo"],
+        latitude: json["latitude"],
+        longitude: json["longitude"],
+        address: json["address"],
+        footerText: json["footer_text"],
+        minimumOrder: json["minimum_order"],
+        comission: json["comission"],
+        scheduleOrder: json["schedule_order"],
+        openingTime: json["opening_time"],
+        closeingTime: json["closeing_time"],
+        status: json["status"],
+        vendorId: json["vendor_id"],
+        createdAt: DateTime.parse(json["created_at"]),
+        updatedAt: DateTime.parse(json["updated_at"]),
+        freeDelivery: json["free_delivery"],
+        rating: List<int>.from(json["rating"].map((x) => x)),
+        coverPhoto: json["cover_photo"],
+        delivery: json["delivery"],
+        takeAway: json["take_away"],
+        foodSection: json["food_section"],
+        tax: json["tax"],
+        zoneId: json["zone_id"],
+        categoryId: json["category_id"],
+        reviewsSection: json["reviews_section"],
+        active: json["active"],
+        offDay: json["off_day"],
+        selfDeliverySystem: json["self_delivery_system"],
+        posSystem: json["pos_system"],
+        minimumShippingCharge: json["minimum_shipping_charge"],
+        deliveryTime: json["delivery_time"],
+        veg: json["veg"],
+        nonVeg: json["non_veg"],
+        orderCount: json["order_count"],
+        totalOrder: json["total_order"],
+        perKmShippingCharge: json["per_km_shipping_charge"],
+        restaurantModel: json["restaurant_model"],
+        maximumShippingCharge: json["maximum_shipping_charge"],
+        slug: json["slug"],
+        orderSubscriptionActive: json["order_subscription_active"],
+        cutlery: json["cutlery"],
+        metaTitle: json["meta_title"],
+        metaDescription: json["meta_description"],
+        metaImage: json["meta_image"],
+        announcement: json["announcement"],
+        announcementMessage: json["announcement_message"],
+        qrCode: json["qr_code"],
+        additionalData: json["additional_data"],
+        additionalDocuments: json["additional_documents"],
+        gstStatus: json["gst_status"],
+        gstCode: json["gst_code"],
+        freeDeliveryDistanceStatus: json["free_delivery_distance_status"],
+        freeDeliveryDistanceValue: json["free_delivery_distance_value"],
+      );
+
+  Map<String, dynamic> toJson() => {
+        "id": id,
+        "name": name,
+        "phone": phone,
+        "email": email,
+        "logo": logo,
+        "latitude": latitude,
+        "longitude": longitude,
+        "address": address,
+        "footer_text": footerText,
+        "minimum_order": minimumOrder,
+        "comission": comission,
+        "schedule_order": scheduleOrder,
+        "opening_time": openingTime,
+        "closeing_time": closeingTime,
+        "status": status,
+        "vendor_id": vendorId,
+        "created_at": createdAt.toIso8601String(),
+        "updated_at": updatedAt.toIso8601String(),
+        "free_delivery": freeDelivery,
+        "rating": List<dynamic>.from(rating.map((x) => x)),
+        "cover_photo": coverPhoto,
+        "delivery": delivery,
+        "take_away": takeAway,
+        "food_section": foodSection,
+        "tax": tax,
+        "zone_id": zoneId,
+        "category_id": categoryId,
+        "reviews_section": reviewsSection,
+        "active": active,
+        "off_day": offDay,
+        "self_delivery_system": selfDeliverySystem,
+        "pos_system": posSystem,
+        "minimum_shipping_charge": minimumShippingCharge,
+        "delivery_time": deliveryTime,
+        "veg": veg,
+        "non_veg": nonVeg,
+        "order_count": orderCount,
+        "total_order": totalOrder,
+        "per_km_shipping_charge": perKmShippingCharge,
+        "restaurant_model": restaurantModel,
+        "maximum_shipping_charge": maximumShippingCharge,
+        "slug": slug,
+        "order_subscription_active": orderSubscriptionActive,
+        "cutlery": cutlery,
+        "meta_title": metaTitle,
+        "meta_description": metaDescription,
+        "meta_image": metaImage,
+        "announcement": announcement,
+        "announcement_message": announcementMessage,
+        "qr_code": qrCode,
+        "additional_data": additionalData,
+        "additional_documents": additionalDocuments,
+        "gst_status": gstStatus,
+        "gst_code": gstCode,
+        "free_delivery_distance_status": freeDeliveryDistanceStatus,
+        "free_delivery_distance_value": freeDeliveryDistanceValue,
+      };
 }

@@ -43,7 +43,7 @@ class OrderWidget extends StatelessWidget {
                   robotoRegular.copyWith(fontSize: Dimensions.fontSizeSmall)),
           const SizedBox(width: Dimensions.paddingSizeExtraSmall),
           Text('#${orderModel.id}',
-              style: robotoMedium.copyWith(fontSize: Dimensions.fontSizeSmall)),
+              style: robotoMedium.copyWith(fontSize: Dimensions.fontSizeLarge)),
           const Expanded(child: SizedBox()),
           Container(
               width: 7,
@@ -63,46 +63,46 @@ class OrderWidget extends StatelessWidget {
           ),
         ]),
         const SizedBox(height: Dimensions.paddingSizeDefault),
-        Row(
-            crossAxisAlignment: CrossAxisAlignment.center,
-            mainAxisAlignment: MainAxisAlignment.start,
-            children: [
-              Image.asset(
-                  orderModel.orderStatus == 'picked_up'
-                      ? Images.user
-                      : Images.house,
-                  width: 20,
-                  height: 15),
-              const SizedBox(width: Dimensions.paddingSizeExtraSmall),
-              Text(
-                orderModel.orderStatus == 'picked_up'
-                    ? 'customer_location'.tr
-                    : 'restaurant_location'.tr,
-                style:
-                    robotoRegular.copyWith(fontSize: Dimensions.fontSizeSmall),
-                maxLines: 1,
-                overflow: TextOverflow.ellipsis,
-              ),
-            ]),
+        // Row(
+        //     crossAxisAlignment: CrossAxisAlignment.center,
+        //     mainAxisAlignment: MainAxisAlignment.start,
+        //     children: [
+        //       Image.asset(
+        //           orderModel.orderStatus == 'picked_up'
+        //               ? Images.user
+        //               : Images.house,
+        //           width: 20,
+        //           height: 15),
+        //       const SizedBox(width: Dimensions.paddingSizeExtraSmall),
+        //       Text(
+        //         orderModel.orderStatus == 'picked_up'
+        //             ? 'customer_location'.tr
+        //             : 'restaurant_location'.tr,
+        //         style:
+        //             robotoRegular.copyWith(fontSize: Dimensions.fontSizeSmall),
+        //         maxLines: 1,
+        //         overflow: TextOverflow.ellipsis,
+        //       ),
+        //     ]),
         const SizedBox(height: Dimensions.paddingSizeSmall),
-        Row(
-            crossAxisAlignment: CrossAxisAlignment.center,
-            mainAxisAlignment: MainAxisAlignment.start,
-            children: [
-              const Icon(Icons.location_on, size: 20),
-              const SizedBox(width: Dimensions.paddingSizeExtraSmall),
-              Expanded(
-                  child: Text(
-                orderModel.orderStatus == 'picked_up'
-                    ? orderModel.deliveryAddress!.address.toString()
-                    : orderModel.restaurantAddress ?? '',
-                style: robotoRegular.copyWith(
-                    color: Theme.of(context).disabledColor,
-                    fontSize: Dimensions.fontSizeSmall),
-                maxLines: 1,
-                overflow: TextOverflow.ellipsis,
-              )),
-            ]),
+        // Row(
+        //     crossAxisAlignment: CrossAxisAlignment.center,
+        //     mainAxisAlignment: MainAxisAlignment.start,
+        //     children: [
+        //       const Icon(Icons.location_on, size: 20),
+        //       const SizedBox(width: Dimensions.paddingSizeExtraSmall),
+        //       Expanded(
+        //           child: Text(
+        //         orderModel.orderStatus == 'picked_up'
+        //             ? orderModel.deliveryAddress!.address.toString()
+        //             : orderModel.restaurantAddress ?? '',
+        //         style: robotoRegular.copyWith(
+        //             color: Theme.of(context).disabledColor,
+        //             fontSize: Dimensions.fontSizeSmall),
+        //         maxLines: 1,
+        //         overflow: TextOverflow.ellipsis,
+        //       )),
+        //     ]),
         const SizedBox(height: Dimensions.paddingSizeDefault),
         Row(children: [
           Expanded(
@@ -132,30 +132,30 @@ class OrderWidget extends StatelessWidget {
                 )),
           )),
           const SizedBox(width: Dimensions.paddingSizeSmall),
-          Expanded(
-              child: CustomButtonWidget(
-            height: 45,
-            onPressed: () async {
-              String url;
-              if (orderModel.orderStatus == 'picked_up') {
-                url =
-                    'https://www.google.com/maps/dir/?api=1&destination=${orderModel.deliveryAddress!.latitude}'
-                    ',${orderModel.deliveryAddress!.longitude}&mode=d';
-              } else {
-                url =
-                    'https://www.google.com/maps/dir/?api=1&destination=${orderModel.restaurantLat ?? '0'}'
-                    ',${orderModel.restaurantLng ?? '0'}&mode=d';
-              }
-              if (await canLaunchUrlString(url)) {
-                await launchUrlString(url,
-                    mode: LaunchMode.externalApplication);
-              } else {
-                showCustomSnackBar('${'could_not_launch'.tr} $url');
-              }
-            },
-            buttonText: 'direction'.tr,
-            icon: Icons.directions,
-          )),
+          // Expanded(
+          //     child: CustomButtonWidget(
+          //   height: 45,
+          //   onPressed: () async {
+          //     String url;
+          //     if (orderModel.orderStatus == 'picked_up') {
+          //       url =
+          //           'https://www.google.com/maps/dir/?api=1&destination=${orderModel.deliveryAddress!.latitude}'
+          //           ',${orderModel.deliveryAddress!.longitude}&mode=d';
+          //     } else {
+          //       url =
+          //           'https://www.google.com/maps/dir/?api=1&destination=${orderModel.restaurantLat ?? '0'}'
+          //           ',${orderModel.restaurantLng ?? '0'}&mode=d';
+          //     }
+          //     if (await canLaunchUrlString(url)) {
+          //       await launchUrlString(url,
+          //           mode: LaunchMode.externalApplication);
+          //     } else {
+          //       showCustomSnackBar('${'could_not_launch'.tr} $url');
+          //     }
+          //   },
+          //   buttonText: 'direction'.tr,
+          //   icon: Icons.directions,
+          // )),
         ]),
       ]),
     );

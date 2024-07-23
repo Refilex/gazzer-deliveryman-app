@@ -4,6 +4,7 @@ import 'package:dotted_border/dotted_border.dart';
 import 'package:stackfood_multivendor_driver/feature/language/controllers/localization_controller.dart';
 import 'package:stackfood_multivendor_driver/feature/notification/controllers/notification_controller.dart';
 import 'package:stackfood_multivendor_driver/feature/order/controllers/order_controller.dart';
+import 'package:stackfood_multivendor_driver/feature/order/widgets/info_card_widget_restaurant.dart';
 import 'package:stackfood_multivendor_driver/feature/splash/controllers/splash_controller.dart';
 import 'package:stackfood_multivendor_driver/feature/notification/domain/models/notification_body_model.dart';
 import 'package:stackfood_multivendor_driver/feature/chat/domain/models/conversation_model.dart';
@@ -293,44 +294,47 @@ class _OrderDetailsScreenState extends State<OrderDetailsScreen> {
                         ),
                       ]),
                       const SizedBox(height: Dimensions.paddingSizeLarge),
-                      InfoCardWidget(
-                        title: 'restaurant_details'.tr,
-                        addressModel: DeliveryAddress(
-                            address: controllerOrderModel.restaurantAddress),
-                        image:
-                            '${Get.find<SplashController>().configModel!.baseUrls!.restaurantImageUrl}/${controllerOrderModel.restaurantLogo}',
-                        name: controllerOrderModel.restaurantName,
-                        phone: controllerOrderModel.restaurantPhone,
-                        latitude: controllerOrderModel.restaurantLat,
-                        longitude: controllerOrderModel.restaurantLng,
-                        showButton:
+
+                      ListView.builder(
+                        shrinkWrap: true,
+                        physics: const NeverScrollableScrollPhysics(),
+                        itemCount:
+                        orderController.orderModel!.restaurants!.length,
+                        itemBuilder: (context, index) {
+                          return   InfoCardWidgetRestaurant(
+                            showButton:
                             (controllerOrderModel.orderStatus != 'delivered' &&
                                 controllerOrderModel.orderStatus != 'failed' &&
                                 controllerOrderModel.orderStatus != 'canceled'),
-                        orderModel: controllerOrderModel,
-                        messageOnTap: () async {
-                          if (controllerOrderModel.restaurantModel !=
+                            restaurant: orderController.orderModel!.restaurants![index],
+                            messageOnTap: () async {
+                              if (controllerOrderModel.restaurantModel !=
                                   'commission' &&
-                              controllerOrderModel.chatPermission == 0) {
-                            showCustomSnackBar(
-                                'restaurant_have_no_chat_permission'.tr);
-                          } else {
-                            _timer?.cancel();
-                            await Get.toNamed(RouteHelper.getChatRoute(
-                              notificationBody: NotificationBodyModel(
-                                orderId: controllerOrderModel.id,
-                                vendorId: controllerOrderModel.vendorId,
-                              ),
-                              user: User(
-                                id: controllerOrderModel.vendorId,
-                                fName: controllerOrderModel.restaurantName,
-                                image: controllerOrderModel.restaurantLogo,
-                              ),
-                            ));
-                            _startApiCalling();
-                          }
+                                  controllerOrderModel.chatPermission == 0) {
+                                showCustomSnackBar(
+                                    'restaurant_have_no_chat_permission'.tr);
+                              } else {
+                                _timer?.cancel();
+                                await Get.toNamed(RouteHelper.getChatRoute(
+                                  notificationBody: NotificationBodyModel(
+                                    orderId: controllerOrderModel.id,
+                                    vendorId: controllerOrderModel.vendorId,
+                                  ),
+                                  user: User(
+                                    id: controllerOrderModel.vendorId,
+                                    fName: controllerOrderModel.restaurantName,
+                                    image: controllerOrderModel.restaurantLogo,
+                                  ),
+                                ));
+                                _startApiCalling();
+                              }
+                            },
+                          );
                         },
                       ),
+
+
+
                       const SizedBox(height: Dimensions.paddingSizeLarge),
                       InfoCardWidget(
                         title: 'customer_contact_details'.tr,
