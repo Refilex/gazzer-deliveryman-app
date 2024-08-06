@@ -1,13 +1,21 @@
 import 'dart:async';
 import 'dart:io';
+
 import 'package:dotted_border/dotted_border.dart';
+import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:image_picker/image_picker.dart';
+import 'package:photo_view/photo_view.dart';
+import 'package:stackfood_multivendor_driver/common/widgets/confirmation_dialog_widget.dart';
+import 'package:stackfood_multivendor_driver/common/widgets/custom_app_bar_widget.dart';
+import 'package:stackfood_multivendor_driver/common/widgets/custom_button_widget.dart';
+import 'package:stackfood_multivendor_driver/common/widgets/custom_image_widget.dart';
+import 'package:stackfood_multivendor_driver/common/widgets/custom_snackbar_widget.dart';
+import 'package:stackfood_multivendor_driver/feature/chat/domain/models/conversation_model.dart';
 import 'package:stackfood_multivendor_driver/feature/language/controllers/localization_controller.dart';
 import 'package:stackfood_multivendor_driver/feature/notification/controllers/notification_controller.dart';
-import 'package:stackfood_multivendor_driver/feature/order/controllers/order_controller.dart';
-import 'package:stackfood_multivendor_driver/feature/order/widgets/info_card_widget_restaurant.dart';
-import 'package:stackfood_multivendor_driver/feature/splash/controllers/splash_controller.dart';
 import 'package:stackfood_multivendor_driver/feature/notification/domain/models/notification_body_model.dart';
-import 'package:stackfood_multivendor_driver/feature/chat/domain/models/conversation_model.dart';
+import 'package:stackfood_multivendor_driver/feature/order/controllers/order_controller.dart';
 import 'package:stackfood_multivendor_driver/feature/order/domain/models/order_details_model.dart';
 import 'package:stackfood_multivendor_driver/feature/order/domain/models/order_model.dart';
 import 'package:stackfood_multivendor_driver/feature/order/widgets/camera_button_sheet_widget.dart';
@@ -15,10 +23,12 @@ import 'package:stackfood_multivendor_driver/feature/order/widgets/cancellation_
 import 'package:stackfood_multivendor_driver/feature/order/widgets/collect_money_delivery_sheet_widget.dart';
 import 'package:stackfood_multivendor_driver/feature/order/widgets/dialogue_image_widget.dart';
 import 'package:stackfood_multivendor_driver/feature/order/widgets/info_card_widget.dart';
+import 'package:stackfood_multivendor_driver/feature/order/widgets/info_card_widget_restaurant.dart';
 import 'package:stackfood_multivendor_driver/feature/order/widgets/order_product_widget.dart';
 import 'package:stackfood_multivendor_driver/feature/order/widgets/slider_button_widget.dart';
 import 'package:stackfood_multivendor_driver/feature/order/widgets/verify_delivery_sheet_widget.dart';
 import 'package:stackfood_multivendor_driver/feature/profile/controllers/profile_controller.dart';
+import 'package:stackfood_multivendor_driver/feature/splash/controllers/splash_controller.dart';
 import 'package:stackfood_multivendor_driver/helper/date_converter_helper.dart';
 import 'package:stackfood_multivendor_driver/helper/price_converter_helper.dart';
 import 'package:stackfood_multivendor_driver/helper/responsive_helper.dart';
@@ -26,15 +36,6 @@ import 'package:stackfood_multivendor_driver/helper/route_helper.dart';
 import 'package:stackfood_multivendor_driver/util/dimensions.dart';
 import 'package:stackfood_multivendor_driver/util/images.dart';
 import 'package:stackfood_multivendor_driver/util/styles.dart';
-import 'package:stackfood_multivendor_driver/common/widgets/confirmation_dialog_widget.dart';
-import 'package:stackfood_multivendor_driver/common/widgets/custom_app_bar_widget.dart';
-import 'package:stackfood_multivendor_driver/common/widgets/custom_button_widget.dart';
-import 'package:stackfood_multivendor_driver/common/widgets/custom_image_widget.dart';
-import 'package:stackfood_multivendor_driver/common/widgets/custom_snackbar_widget.dart';
-import 'package:flutter/material.dart';
-import 'package:get/get.dart';
-import 'package:image_picker/image_picker.dart';
-import 'package:photo_view/photo_view.dart';
 
 class OrderDetailsScreen extends StatefulWidget {
   final int? orderId;
@@ -138,12 +139,42 @@ class _OrderDetailsScreenState extends State<OrderDetailsScreen> {
           double extraPackagingAmount = 0;
           double referrerBonusAmount = 0;
           OrderModel? order = controllerOrderModel;
-
-          if (order != null && orderController.orderDetailsModel != null) {
-            if (order.orderType == 'delivery') {
-              deliveryCharge = order.deliveryCharge;
-              dmTips = order.dmTips;
+          Map<int, List<OrderDetailsModel>> ordersByRestaurant = {};
+          for (OrderDetailsModel orderDetails
+              in orderController.orderDetailsModel ?? []) {
+            if (orderDetails.foodDetails != null &&
+                !ordersByRestaurant
+                    .containsKey(orderDetails.foodDetails!.restaurantId)) {
+              ordersByRestaurant[orderDetails.foodDetails!.restaurantId!] = [];
             }
+            if (orderDetails.foodDetails != null) {
+              ordersByRestaurant[orderDetails.foodDetails!.restaurantId!]!
+                  .add(orderDetails);
+            }
+          }
+          int restaurantCount = 0;
+          for (List<OrderDetailsModel> orders in ordersByRestaurant.values) {
+            restaurantCount++;
+            for (OrderDetailsModel orderDetails in orders) {
+              for (AddOn addOn in orderDetails.addOns!) {
+                addOns = addOns + (addOn.price! * addOn.quantity!);
+              }
+              itemsPrice =
+                  itemsPrice + (orderDetails.price! * orderDetails.quantity!);
+            }
+            // First order from each restaurant has a delivery charge of 15
+            // Other orders from the same restaurant have a delivery charge of 5
+            if (restaurantCount == 1) {
+              deliveryCharge = deliveryCharge! + 15;
+            } else {
+              deliveryCharge = deliveryCharge! + 5;
+            }
+          }
+          if (order != null && orderController.orderDetailsModel != null) {
+            // if (order.orderType == 'delivery') {
+            //   deliveryCharge = order.deliveryCharge;
+            //   dmTips = order.dmTips;
+            // }
             discount = order.restaurantDiscountAmount;
             tax = order.totalTaxAmount;
             taxIncluded = order.taxStatus;
