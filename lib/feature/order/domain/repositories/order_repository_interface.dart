@@ -4,7 +4,7 @@ import 'package:stackfood_multivendor_driver/feature/order/domain/models/update_
 import 'package:stackfood_multivendor_driver/interface/repository_interface.dart';
 
 abstract class OrderRepositoryInterface implements RepositoryInterface {
-  Future<dynamic> getCompletedOrderList(int offset);
+  Future<dynamic> getCompletedOrderList(int offset, String orderStatus);
 
   Future<dynamic> getCurrentOrders();
 

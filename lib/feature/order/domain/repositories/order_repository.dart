@@ -1,16 +1,17 @@
-import 'package:stackfood_multivendor_driver/common/models/response_model.dart';
+import 'dart:convert';
+
+import 'package:get/get.dart';
+import 'package:get/get_connect/http/src/response/response.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:stackfood_multivendor_driver/api/api_client.dart';
+import 'package:stackfood_multivendor_driver/common/models/response_model.dart';
+import 'package:stackfood_multivendor_driver/feature/order/domain/models/ignore_model.dart';
 import 'package:stackfood_multivendor_driver/feature/order/domain/models/order_cancellation_body_model.dart';
 import 'package:stackfood_multivendor_driver/feature/order/domain/models/order_details_model.dart';
 import 'package:stackfood_multivendor_driver/feature/order/domain/models/order_model.dart';
+import 'package:stackfood_multivendor_driver/feature/order/domain/models/update_status_body.dart';
 import 'package:stackfood_multivendor_driver/feature/order/domain/repositories/order_repository_interface.dart';
 import 'package:stackfood_multivendor_driver/util/app_constants.dart';
-import 'package:get/get.dart';
-import 'package:shared_preferences/shared_preferences.dart';
-import 'dart:convert';
-import 'package:stackfood_multivendor_driver/feature/order/domain/models/update_status_body.dart';
-import 'package:stackfood_multivendor_driver/feature/order/domain/models/ignore_model.dart';
-import 'package:get/get_connect/http/src/response/response.dart';
 
 class OrderRepository implements OrderRepositoryInterface {
   final ApiClient apiClient;
@@ -32,10 +33,11 @@ class OrderRepository implements OrderRepositoryInterface {
   }
 
   @override
-  Future<PaginatedOrderModel?> getCompletedOrderList(int offset) async {
+  Future<PaginatedOrderModel?> getCompletedOrderList(
+      int offset, String orderStatus) async {
     PaginatedOrderModel? paginatedOrderModel;
     Response response = await apiClient.getData(
-        '${AppConstants.allOrdersUri}?token=${_getUserToken()}&offset=$offset&limit=10');
+        '${AppConstants.allOrdersUri}?token=${_getUserToken()}&offset=$offset&limit=10&order_status=$orderStatus');
     if (response.statusCode == 200) {
       paginatedOrderModel = PaginatedOrderModel.fromJson(response.body);
     }

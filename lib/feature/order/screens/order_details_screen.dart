@@ -618,7 +618,9 @@ class _OrderDetailsScreenState extends State<OrderDetailsScreen> {
                                     MainAxisAlignment.spaceBetween,
                                 children: [
                                   Text('item_price'.tr, style: robotoRegular),
-                                  Text(PriceConverter.convertPrice(itemsPrice),
+                                  Text(
+                                      PriceConverter.convertPrice(
+                                          order.orderAmount! - deliveryCharge),
                                       style: robotoRegular,
                                       textDirection: TextDirection.ltr),
                                 ]),
@@ -646,7 +648,9 @@ class _OrderDetailsScreenState extends State<OrderDetailsScreen> {
                                   Text(
                                       '${'subtotal'.tr} ${taxIncluded ? '(${'tax_included'.tr})' : ''}',
                                       style: robotoMedium),
-                                  Text(PriceConverter.convertPrice(subTotal),
+                                  Text(
+                                      PriceConverter.convertPrice(
+                                          order.orderAmount! - deliveryCharge),
                                       style: robotoMedium,
                                       textDirection: TextDirection.ltr),
                                 ]),
@@ -863,7 +867,8 @@ class _OrderDetailsScreenState extends State<OrderDetailsScreen> {
                                                   .primaryColor,
                                             )),
                                         Text(
-                                          PriceConverter.convertPrice(total),
+                                          PriceConverter.convertPrice(
+                                              order.orderAmount),
                                           textDirection: TextDirection.ltr,
                                           style: robotoMedium.copyWith(
                                               fontSize:

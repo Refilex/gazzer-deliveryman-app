@@ -7,7 +7,7 @@ import 'package:stackfood_multivendor_driver/feature/order/domain/models/update_
 abstract class OrderServiceInterface {
   Future<dynamic> getAllOrders();
 
-  Future<dynamic> getCompletedOrderList(int offset);
+  Future<dynamic> getCompletedOrderList(int offset, String orderStatus);
 
   Future<dynamic> getCurrentOrders();
 
