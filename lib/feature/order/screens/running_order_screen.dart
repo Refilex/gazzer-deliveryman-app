@@ -15,7 +15,7 @@ class RunningOrderScreen extends StatefulWidget {
 }
 
 class _RunningOrderScreenState extends State<RunningOrderScreen> {
-  int _selectedIndex = 0;
+  int _selectedIndex = 0; // Initially set to 0 for "Active order"
   final List<String> excludedStatuses = [
     'Active order',
     'Delivered',
@@ -29,6 +29,7 @@ class _RunningOrderScreenState extends State<RunningOrderScreen> {
   @override
   void initState() {
     super.initState();
+    // Fetch initial data for "Active order" when screen first loads
     Get.find<OrderController>().getCurrentOrders();
   }
 
@@ -39,15 +40,17 @@ class _RunningOrderScreenState extends State<RunningOrderScreen> {
 
     scrollController.addListener(() {
       if (scrollController.position.pixels ==
-              scrollController.position.maxScrollExtent &&
-          orderController.completedOrderList != null &&
-          !orderController.paginate) {
-        int pageSize = (orderController.pageSize! / 10).ceil();
-        if (orderController.offset < pageSize) {
-          orderController.setOffset(orderController.offset + 1);
-          customPrint('end of the page');
-          orderController.showBottomLoader();
-          orderController.getCurrentOrders();
+          scrollController.position.maxScrollExtent) {
+        if (orderController.completedOrderList != null &&
+            !orderController.paginate) {
+          int pageSize = (orderController.pageSize! / 10).ceil();
+          if (orderController.offset < pageSize) {
+            orderController.setOffset(orderController.offset + 1);
+            customPrint('end of the page');
+            orderController.showBottomLoader();
+            orderController
+                .getCurrentOrders(); // Ensure this gets called for pagination
+          }
         }
       }
     });
@@ -57,7 +60,7 @@ class _RunningOrderScreenState extends State<RunningOrderScreen> {
       body: GetBuilder<OrderController>(builder: (orderController) {
         return Column(
           children: [
-            // Status Tabs
+            // Status Tabs...
             Container(
               color: Colors.white,
               padding: const EdgeInsets.symmetric(vertical: 10),
@@ -74,7 +77,7 @@ class _RunningOrderScreenState extends State<RunningOrderScreen> {
                     return InkWell(
                       onTap: () async {
                         if (excludedStatuses[index] == "Active order") {
-                          Get.find<OrderController>().getCurrentOrders();
+                          await Get.find<OrderController>().getCurrentOrders();
                         } else {
                           await orderController.getCompletedOrders(
                               1, _getOrderStatusCode(excludedStatuses[index]));
@@ -114,45 +117,45 @@ class _RunningOrderScreenState extends State<RunningOrderScreen> {
                 ),
               ),
             ),
-            // Conditional view based on selected status
+            // Conditional view based on selected status...
             Expanded(
-              child: orderController.completedOrderList != null
-                  ? orderController.completedOrderList!.isNotEmpty
-                      ? RefreshIndicator(
-                          onRefresh: () async {
-                            await orderController.getCurrentOrders();
-                          },
-                          child: SingleChildScrollView(
-                            controller: scrollController,
-                            physics: const AlwaysScrollableScrollPhysics(),
-                            child: Center(
-                              child: SizedBox(
-                                width: 1170,
-                                child: Column(
-                                  children: [
-                                    if (excludedStatuses[_selectedIndex] ==
-                                        "Active order")
-                                      _buildActiveOrderView(orderController)
-                                    else
-                                      _buildOrderListView(orderController),
-                                    orderController.paginate
-                                        ? const Center(
-                                            child: Padding(
-                                              padding: EdgeInsets.all(
-                                                  Dimensions.paddingSizeSmall),
-                                              child:
-                                                  CircularProgressIndicator(),
-                                            ),
-                                          )
-                                        : const SizedBox(),
-                                  ],
-                                ),
+              child: RefreshIndicator(
+                onRefresh: () async {
+                  if (excludedStatuses[_selectedIndex] == "Active order") {
+                    await orderController.getCurrentOrders();
+                  } else {
+                    await orderController.getCompletedOrders(1,
+                        _getOrderStatusCode(excludedStatuses[_selectedIndex]));
+                  }
+                },
+                child: SingleChildScrollView(
+                  controller: scrollController,
+                  physics: const AlwaysScrollableScrollPhysics(),
+                  child: Center(
+                    child: SizedBox(
+                      width: 1170,
+                      child: Column(
+                        children: [
+                          // Display Active Order view or Completed Orders view based on selectedIndex
+                          if (excludedStatuses[_selectedIndex] ==
+                              "Active order")
+                            _buildActiveOrderView(orderController)
+                          else
+                            _buildOrderListView(orderController),
+                          if (orderController.paginate)
+                            const Center(
+                              child: Padding(
+                                padding:
+                                    EdgeInsets.all(Dimensions.paddingSizeSmall),
+                                child: CircularProgressIndicator(),
                               ),
                             ),
-                          ),
-                        )
-                      : Center(child: Text('no_order_found'.tr))
-                  : const Center(child: CircularProgressIndicator()),
+                        ],
+                      ),
+                    ),
+                  ),
+                ),
+              ),
             ),
           ],
         );
@@ -160,6 +163,7 @@ class _RunningOrderScreenState extends State<RunningOrderScreen> {
     );
   }
 
+  // Helper method to get order status code
   String _getOrderStatusCode(String status) {
     switch (status) {
       case 'Delivered':
@@ -179,34 +183,43 @@ class _RunningOrderScreenState extends State<RunningOrderScreen> {
     }
   }
 
+  // Widget for displaying active orders
   Widget _buildActiveOrderView(OrderController orderController) {
-    // Custom widget for "Active order"
-    return ListView.builder(
-      padding: const EdgeInsets.all(Dimensions.paddingSizeSmall),
+    return orderController.currentOrderList != null &&
+            orderController.currentOrderList!.isNotEmpty
+        ? ListView.builder(
+            padding: const EdgeInsets.all(Dimensions.paddingSizeSmall),
       itemCount: orderController.currentOrderList!.length,
       physics: const NeverScrollableScrollPhysics(),
       shrinkWrap: true,
       itemBuilder: (context, index) {
         return HistoryOrderWidget(
-            orderModel: orderController.currentOrderList![index],
-            isRunning: true,
-            index: index);
-      },
-    );
+                orderModel: orderController.currentOrderList![index],
+                isRunning: true,
+                index: index,
+              );
+            },
+          )
+        : Center(child: Text('no_active_orders_found'.tr));
   }
 
+  // Widget for displaying completed orders
   Widget _buildOrderListView(OrderController orderController) {
-    return ListView.builder(
-      padding: const EdgeInsets.all(Dimensions.paddingSizeSmall),
+    return orderController.completedOrderList != null &&
+            orderController.completedOrderList!.isNotEmpty
+        ? ListView.builder(
+            padding: const EdgeInsets.all(Dimensions.paddingSizeSmall),
       itemCount: orderController.completedOrderList!.length,
       physics: const NeverScrollableScrollPhysics(),
       shrinkWrap: true,
       itemBuilder: (context, index) {
         return HistoryOrderWidget(
-            orderModel: orderController.completedOrderList![index],
-            isRunning: false,
-            index: index);
-      },
-    );
+                orderModel: orderController.completedOrderList![index],
+                isRunning: false,
+                index: index,
+              );
+            },
+          )
+        : Center(child: Text('no_completed_orders_found'.tr));
   }
 }
