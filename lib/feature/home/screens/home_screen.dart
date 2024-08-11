@@ -1,28 +1,29 @@
 import 'package:disable_battery_optimization/disable_battery_optimization.dart';
-import 'package:stackfood_multivendor_driver/common/widgets/custom_alert_dialog_widget.dart';
-import 'package:stackfood_multivendor_driver/feature/notification/controllers/notification_controller.dart';
-import 'package:stackfood_multivendor_driver/feature/order/controllers/order_controller.dart';
-import 'package:stackfood_multivendor_driver/feature/home/widgets/count_card_widget.dart';
-import 'package:stackfood_multivendor_driver/feature/home/widgets/earning_widget.dart';
-import 'package:stackfood_multivendor_driver/feature/home/widgets/shift_dialogue_widget.dart';
-import 'package:stackfood_multivendor_driver/feature/order/screens/running_order_screen.dart';
-import 'package:stackfood_multivendor_driver/feature/profile/controllers/profile_controller.dart';
-import 'package:stackfood_multivendor_driver/helper/price_converter_helper.dart';
-import 'package:stackfood_multivendor_driver/helper/route_helper.dart';
-import 'package:stackfood_multivendor_driver/util/dimensions.dart';
-import 'package:stackfood_multivendor_driver/util/images.dart';
-import 'package:stackfood_multivendor_driver/util/styles.dart';
-import 'package:stackfood_multivendor_driver/common/widgets/confirmation_dialog_widget.dart';
-import 'package:stackfood_multivendor_driver/common/widgets/custom_button_widget.dart';
-import 'package:stackfood_multivendor_driver/common/widgets/custom_snackbar_widget.dart';
-import 'package:stackfood_multivendor_driver/common/widgets/order_shimmer_widget.dart';
-import 'package:stackfood_multivendor_driver/common/widgets/order_widget.dart';
-import 'package:stackfood_multivendor_driver/common/widgets/title_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_switch/flutter_switch.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:get/get.dart';
 import 'package:shimmer_animation/shimmer_animation.dart';
+import 'package:stackfood_multivendor_driver/common/widgets/confirmation_dialog_widget.dart';
+import 'package:stackfood_multivendor_driver/common/widgets/custom_alert_dialog_widget.dart';
+import 'package:stackfood_multivendor_driver/common/widgets/custom_button_widget.dart';
+import 'package:stackfood_multivendor_driver/common/widgets/custom_snackbar_widget.dart';
+import 'package:stackfood_multivendor_driver/common/widgets/order_shimmer_widget.dart';
+import 'package:stackfood_multivendor_driver/common/widgets/order_widget.dart';
+import 'package:stackfood_multivendor_driver/common/widgets/title_widget.dart';
+import 'package:stackfood_multivendor_driver/feature/home/widgets/count_card_widget.dart';
+import 'package:stackfood_multivendor_driver/feature/home/widgets/earning_widget.dart';
+import 'package:stackfood_multivendor_driver/feature/home/widgets/shift_dialogue_widget.dart';
+import 'package:stackfood_multivendor_driver/feature/notification/controllers/notification_controller.dart';
+import 'package:stackfood_multivendor_driver/feature/order/controllers/order_controller.dart';
+import 'package:stackfood_multivendor_driver/feature/order/screens/running_order_screen.dart';
+import 'package:stackfood_multivendor_driver/feature/profile/controllers/profile_controller.dart';
+import 'package:stackfood_multivendor_driver/helper/price_converter_helper.dart';
+import 'package:stackfood_multivendor_driver/helper/route_helper.dart';
+import 'package:stackfood_multivendor_driver/util/app_constants.dart';
+import 'package:stackfood_multivendor_driver/util/dimensions.dart';
+import 'package:stackfood_multivendor_driver/util/images.dart';
+import 'package:stackfood_multivendor_driver/util/styles.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
@@ -50,11 +51,17 @@ class HomeScreen extends StatelessWidget {
         backgroundColor: Theme.of(context).cardColor,
         leading: Padding(
           padding: const EdgeInsets.all(Dimensions.paddingSizeSmall),
-          child: Image.asset(Images.logo, height: 30, width: 30),
+          child: Image.asset(Images.gazzerLogo, height: 30, width: 30),
         ),
         titleSpacing: 0,
         elevation: 0,
-        title: Image.asset(Images.logoName, width: 120),
+        title: const Text(
+          AppConstants.appName,
+          style: TextStyle(
+            color: Colors.deepOrange,
+            fontSize: 20.0,
+          ),
+        ),
         actions: [
           IconButton(
             icon: GetBuilder<NotificationController>(

@@ -167,7 +167,10 @@ class _OrderDetailsScreenState extends State<OrderDetailsScreen> {
             if (restaurantCount == 1) {
               deliveryCharge = deliveryCharge! + 15;
             } else {
-              deliveryCharge = deliveryCharge! + 5;
+              deliveryCharge = deliveryCharge! +
+                  Get.find<SplashController>()
+                      .configModel!
+                      .deliveryFeeMultiVendor!;
             }
           }
           if (order != null && orderController.orderDetailsModel != null) {

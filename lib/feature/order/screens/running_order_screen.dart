@@ -17,6 +17,7 @@ class RunningOrderScreen extends StatefulWidget {
 class _RunningOrderScreenState extends State<RunningOrderScreen> {
   int _selectedIndex = 0;
   final List<String> excludedStatuses = [
+    'Active order',
     'Delivered',
     'Failed',
     'Canceled',
@@ -28,7 +29,7 @@ class _RunningOrderScreenState extends State<RunningOrderScreen> {
   @override
   void initState() {
     super.initState();
-    Get.find<OrderController>().getCompletedOrders(1, "delivered");
+    Get.find<OrderController>().getCurrentOrders();
   }
 
   @override
@@ -46,8 +47,7 @@ class _RunningOrderScreenState extends State<RunningOrderScreen> {
           orderController.setOffset(orderController.offset + 1);
           customPrint('end of the page');
           orderController.showBottomLoader();
-          orderController.getCompletedOrders(
-              orderController.offset, "delivered");
+          orderController.getCurrentOrders();
         }
       }
     });
@@ -57,6 +57,7 @@ class _RunningOrderScreenState extends State<RunningOrderScreen> {
       body: GetBuilder<OrderController>(builder: (orderController) {
         return Column(
           children: [
+            // Status Tabs
             Container(
               color: Colors.white,
               padding: const EdgeInsets.symmetric(vertical: 10),
@@ -70,35 +71,18 @@ class _RunningOrderScreenState extends State<RunningOrderScreen> {
                   physics: const BouncingScrollPhysics(),
                   itemBuilder: (context, index) {
                     String category = excludedStatuses[index];
-
                     return InkWell(
                       onTap: () async {
-                        if (excludedStatuses[index] == "Delivered") {
+                        if (excludedStatuses[index] == "Active order") {
+                          Get.find<OrderController>().getCurrentOrders();
+                        } else {
                           await orderController.getCompletedOrders(
-                              1, "delivered");
+                              1, _getOrderStatusCode(excludedStatuses[index]));
                         }
-                        if (excludedStatuses[index] == "Failed") {
-                          await orderController.getCompletedOrders(1, "failed");
-                        }
-                        if (excludedStatuses[index] == "Canceled") {
-                          await orderController.getCompletedOrders(
-                              1, "canceled");
-                        }
-                        if (excludedStatuses[index] == "Refund requested") {
-                          await orderController.getCompletedOrders(
-                              1, "refund_requested");
-                        }
-                        if (excludedStatuses[index] == "Refunded") {
-                          await orderController.getCompletedOrders(
-                              1, "refunded");
-                        }
-                        if (excludedStatuses[index] ==
-                            "Refund request canceled") {
-                          await orderController.getCompletedOrders(
-                              1, "refund_request_canceled");
-                        }
-                        _selectedIndex =
-                            index; // Update _selectedIndex directly
+                        setState(() {
+                          _selectedIndex =
+                              index; // Update _selectedIndex with setState
+                        });
                       },
                       child: Container(
                         padding: const EdgeInsets.symmetric(
@@ -130,14 +114,13 @@ class _RunningOrderScreenState extends State<RunningOrderScreen> {
                 ),
               ),
             ),
-            // List of orders
+            // Conditional view based on selected status
             Expanded(
               child: orderController.completedOrderList != null
                   ? orderController.completedOrderList!.isNotEmpty
                       ? RefreshIndicator(
                           onRefresh: () async {
-                            await orderController.getCompletedOrders(
-                                1, "delivered");
+                            await orderController.getCurrentOrders();
                           },
                           child: SingleChildScrollView(
                             controller: scrollController,
@@ -147,22 +130,11 @@ class _RunningOrderScreenState extends State<RunningOrderScreen> {
                                 width: 1170,
                                 child: Column(
                                   children: [
-                                    ListView.builder(
-                                      padding: const EdgeInsets.all(
-                                          Dimensions.paddingSizeSmall),
-                                      itemCount: orderController
-                                          .completedOrderList!.length,
-                                      physics:
-                                          const NeverScrollableScrollPhysics(),
-                                      shrinkWrap: true,
-                                      itemBuilder: (context, index) {
-                                        return HistoryOrderWidget(
-                                            orderModel: orderController
-                                                .completedOrderList![index],
-                                            isRunning: false,
-                                            index: index);
-                                      },
-                                    ),
+                                    if (excludedStatuses[_selectedIndex] ==
+                                        "Active order")
+                                      _buildActiveOrderView(orderController)
+                                    else
+                                      _buildOrderListView(orderController),
                                     orderController.paginate
                                         ? const Center(
                                             child: Padding(
@@ -185,6 +157,56 @@ class _RunningOrderScreenState extends State<RunningOrderScreen> {
           ],
         );
       }),
+    );
+  }
+
+  String _getOrderStatusCode(String status) {
+    switch (status) {
+      case 'Delivered':
+        return 'delivered';
+      case 'Failed':
+        return 'failed';
+      case 'Canceled':
+        return 'canceled';
+      case 'Refund requested':
+        return 'refund_requested';
+      case 'Refunded':
+        return 'refunded';
+      case 'Refund request canceled':
+        return 'refund_request_canceled';
+      default:
+        return '';
+    }
+  }
+
+  Widget _buildActiveOrderView(OrderController orderController) {
+    // Custom widget for "Active order"
+    return ListView.builder(
+      padding: const EdgeInsets.all(Dimensions.paddingSizeSmall),
+      itemCount: orderController.currentOrderList!.length,
+      physics: const NeverScrollableScrollPhysics(),
+      shrinkWrap: true,
+      itemBuilder: (context, index) {
+        return HistoryOrderWidget(
+            orderModel: orderController.currentOrderList![index],
+            isRunning: true,
+            index: index);
+      },
+    );
+  }
+
+  Widget _buildOrderListView(OrderController orderController) {
+    return ListView.builder(
+      padding: const EdgeInsets.all(Dimensions.paddingSizeSmall),
+      itemCount: orderController.completedOrderList!.length,
+      physics: const NeverScrollableScrollPhysics(),
+      shrinkWrap: true,
+      itemBuilder: (context, index) {
+        return HistoryOrderWidget(
+            orderModel: orderController.completedOrderList![index],
+            isRunning: false,
+            index: index);
+      },
     );
   }
 }
