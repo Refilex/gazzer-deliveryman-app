@@ -1,5 +1,5 @@
-import 'package:stackfood_multivendor_driver/common/widgets/custom_image_widget.dart';
-import 'package:stackfood_multivendor_driver/util/dimensions.dart';
+import 'package:gazzer_delivery/common/widgets/custom_image_widget.dart';
+import 'package:gazzer_delivery/util/dimensions.dart';
 import 'package:flutter/material.dart';
 
 class ImageDialogWidget extends StatelessWidget {

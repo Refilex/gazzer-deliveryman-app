@@ -1,10 +1,10 @@
-import 'package:stackfood_multivendor_driver/api/api_client.dart';
-import 'package:stackfood_multivendor_driver/feature/disbursements/domain/models/withdraw_method_model.dart';
-import 'package:stackfood_multivendor_driver/feature/disbursements/domain/repositories/disbursement_repository_interface.dart';
-import 'package:stackfood_multivendor_driver/util/app_constants.dart';
-import 'package:stackfood_multivendor_driver/feature/disbursements/domain/models/disbursement_method_model.dart'
+import 'package:gazzer_delivery/api/api_client.dart';
+import 'package:gazzer_delivery/feature/disbursements/domain/models/withdraw_method_model.dart';
+import 'package:gazzer_delivery/feature/disbursements/domain/repositories/disbursement_repository_interface.dart';
+import 'package:gazzer_delivery/util/app_constants.dart';
+import 'package:gazzer_delivery/feature/disbursements/domain/models/disbursement_method_model.dart'
     as disburse;
-import 'package:stackfood_multivendor_driver/feature/disbursements/domain/models/disbursement_report_model.dart'
+import 'package:gazzer_delivery/feature/disbursements/domain/models/disbursement_report_model.dart'
     as report;
 import 'package:get/get.dart';
 import 'package:shared_preferences/shared_preferences.dart';

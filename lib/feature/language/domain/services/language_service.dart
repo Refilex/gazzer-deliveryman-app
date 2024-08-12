@@ -1,7 +1,7 @@
-import 'package:stackfood_multivendor_driver/feature/language/domain/repositories/language_repository_interface.dart';
-import 'package:stackfood_multivendor_driver/feature/language/domain/services/language_service_interface.dart';
+import 'package:gazzer_delivery/feature/language/domain/repositories/language_repository_interface.dart';
+import 'package:gazzer_delivery/feature/language/domain/services/language_service_interface.dart';
 import 'package:flutter/material.dart';
-import 'package:stackfood_multivendor_driver/util/app_constants.dart';
+import 'package:gazzer_delivery/util/app_constants.dart';
 
 class LanguageService implements LanguageServiceInterface {
   final LanguageRepositoryInterface languageRepositoryInterface;

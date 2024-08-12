@@ -1,6 +1,6 @@
 import 'package:geolocator/geolocator.dart';
-import 'package:stackfood_multivendor_driver/feature/profile/domain/models/profile_model.dart';
-import 'package:stackfood_multivendor_driver/feature/profile/domain/models/record_location_body.dart';
+import 'package:gazzer_delivery/feature/profile/domain/models/profile_model.dart';
+import 'package:gazzer_delivery/feature/profile/domain/models/record_location_body.dart';
 import 'package:image_picker/image_picker.dart';
 
 abstract class ProfileServiceInterface {

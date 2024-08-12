@@ -1,16 +1,16 @@
 import 'dart:async';
 import 'dart:io';
-import 'package:stackfood_multivendor_driver/feature/auth/controllers/auth_controller.dart';
-import 'package:stackfood_multivendor_driver/feature/language/controllers/localization_controller.dart';
-import 'package:stackfood_multivendor_driver/feature/splash/controllers/splash_controller.dart';
-import 'package:stackfood_multivendor_driver/common/controllers/theme_controller.dart';
-import 'package:stackfood_multivendor_driver/feature/notification/domain/models/notification_body_model.dart';
-import 'package:stackfood_multivendor_driver/helper/notification_helper.dart';
-import 'package:stackfood_multivendor_driver/helper/route_helper.dart';
-import 'package:stackfood_multivendor_driver/theme/dark_theme.dart';
-import 'package:stackfood_multivendor_driver/theme/light_theme.dart';
-import 'package:stackfood_multivendor_driver/util/app_constants.dart';
-import 'package:stackfood_multivendor_driver/util/messages.dart';
+import 'package:gazzer_delivery/feature/auth/controllers/auth_controller.dart';
+import 'package:gazzer_delivery/feature/language/controllers/localization_controller.dart';
+import 'package:gazzer_delivery/feature/splash/controllers/splash_controller.dart';
+import 'package:gazzer_delivery/common/controllers/theme_controller.dart';
+import 'package:gazzer_delivery/feature/notification/domain/models/notification_body_model.dart';
+import 'package:gazzer_delivery/helper/notification_helper.dart';
+import 'package:gazzer_delivery/helper/route_helper.dart';
+import 'package:gazzer_delivery/theme/dark_theme.dart';
+import 'package:gazzer_delivery/theme/light_theme.dart';
+import 'package:gazzer_delivery/util/app_constants.dart';
+import 'package:gazzer_delivery/util/messages.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
@@ -34,10 +34,10 @@ Future<void> main() async {
   if (GetPlatform.isAndroid) {
     await Firebase.initializeApp(
       options: const FirebaseOptions(
-        apiKey: 'AIzaSyBScz65YN8J9YoKdtKPl4ecCB3Vkc7iNL8',
-        appId: '1:1049699819506:android:490a8d64ef54403889956b',
-        messagingSenderId: '1049699819506',
-        projectId: 'stackfood-bd3ee',
+        apiKey: 'AIzaSyCfxGdnL_KhgbNDY7mFQh-tHHBqIaxisYw',
+        appId: '1:671839887516:android:943c43dfaadfac33798d59',
+        messagingSenderId: '671839887516',
+        projectId: 'gazzer-app',
       ),
     );
   } else {

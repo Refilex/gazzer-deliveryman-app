@@ -1,7 +1,7 @@
-import 'package:stackfood_multivendor_driver/feature/auth/controllers/auth_controller.dart';
-import 'package:stackfood_multivendor_driver/feature/profile/controllers/profile_controller.dart';
-import 'package:stackfood_multivendor_driver/helper/route_helper.dart';
-import 'package:stackfood_multivendor_driver/common/widgets/custom_snackbar_widget.dart';
+import 'package:gazzer_delivery/feature/auth/controllers/auth_controller.dart';
+import 'package:gazzer_delivery/feature/profile/controllers/profile_controller.dart';
+import 'package:gazzer_delivery/helper/route_helper.dart';
+import 'package:gazzer_delivery/common/widgets/custom_snackbar_widget.dart';
 import 'package:get/get.dart';
 
 class ApiChecker {

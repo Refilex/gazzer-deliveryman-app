@@ -2,12 +2,12 @@ import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
-import 'package:stackfood_multivendor_driver/common/models/config_model.dart';
-import 'package:stackfood_multivendor_driver/common/widgets/custom_snackbar_widget.dart';
-import 'package:stackfood_multivendor_driver/api/api_client.dart';
-import 'package:stackfood_multivendor_driver/feature/auth/domain/models/vehicle_model.dart';
-import 'package:stackfood_multivendor_driver/feature/auth/domain/repositories/auth_repository_interface.dart';
-import 'package:stackfood_multivendor_driver/feature/auth/domain/services/auth_service_interface.dart';
+import 'package:gazzer_delivery/common/models/config_model.dart';
+import 'package:gazzer_delivery/common/widgets/custom_snackbar_widget.dart';
+import 'package:gazzer_delivery/api/api_client.dart';
+import 'package:gazzer_delivery/feature/auth/domain/models/vehicle_model.dart';
+import 'package:gazzer_delivery/feature/auth/domain/repositories/auth_repository_interface.dart';
+import 'package:gazzer_delivery/feature/auth/domain/services/auth_service_interface.dart';
 
 class AuthService implements AuthServiceInterface {
   final AuthRepositoryInterface authRepositoryInterface;

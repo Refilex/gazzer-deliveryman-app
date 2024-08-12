@@ -1,7 +1,7 @@
-import 'package:stackfood_multivendor_driver/feature/cash_in_hand/widgets/payment_method_bottom_sheet_widget.dart';
-import 'package:stackfood_multivendor_driver/util/dimensions.dart';
-import 'package:stackfood_multivendor_driver/util/images.dart';
-import 'package:stackfood_multivendor_driver/util/styles.dart';
+import 'package:gazzer_delivery/feature/cash_in_hand/widgets/payment_method_bottom_sheet_widget.dart';
+import 'package:gazzer_delivery/util/dimensions.dart';
+import 'package:gazzer_delivery/util/images.dart';
+import 'package:gazzer_delivery/util/styles.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';

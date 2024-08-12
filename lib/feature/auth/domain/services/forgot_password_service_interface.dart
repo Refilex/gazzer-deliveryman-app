@@ -1,4 +1,4 @@
-import 'package:stackfood_multivendor_driver/feature/profile/domain/models/profile_model.dart';
+import 'package:gazzer_delivery/feature/profile/domain/models/profile_model.dart';
 
 abstract class ForgotPasswordServiceInterface {
   Future<dynamic> changePassword(ProfileModel userInfoModel, String password);

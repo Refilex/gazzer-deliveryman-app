@@ -1,14 +1,14 @@
 import 'dart:async';
 import 'package:connectivity_plus/connectivity_plus.dart';
-import 'package:stackfood_multivendor_driver/feature/auth/controllers/auth_controller.dart';
-import 'package:stackfood_multivendor_driver/feature/splash/controllers/splash_controller.dart';
-import 'package:stackfood_multivendor_driver/feature/notification/domain/models/notification_body_model.dart';
-import 'package:stackfood_multivendor_driver/feature/profile/controllers/profile_controller.dart';
-import 'package:stackfood_multivendor_driver/helper/route_helper.dart';
-import 'package:stackfood_multivendor_driver/util/app_constants.dart';
-import 'package:stackfood_multivendor_driver/util/dimensions.dart';
-import 'package:stackfood_multivendor_driver/util/images.dart';
-import 'package:stackfood_multivendor_driver/util/styles.dart';
+import 'package:gazzer_delivery/feature/auth/controllers/auth_controller.dart';
+import 'package:gazzer_delivery/feature/splash/controllers/splash_controller.dart';
+import 'package:gazzer_delivery/feature/notification/domain/models/notification_body_model.dart';
+import 'package:gazzer_delivery/feature/profile/controllers/profile_controller.dart';
+import 'package:gazzer_delivery/helper/route_helper.dart';
+import 'package:gazzer_delivery/util/app_constants.dart';
+import 'package:gazzer_delivery/util/dimensions.dart';
+import 'package:gazzer_delivery/util/images.dart';
+import 'package:gazzer_delivery/util/styles.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 

@@ -1,5 +1,5 @@
 import 'dart:convert';
-import 'package:stackfood_multivendor_driver/feature/chat/domain/models/conversation_model.dart';
+import 'package:gazzer_delivery/feature/chat/domain/models/conversation_model.dart';
 
 class MessageModel {
   int? totalSize;

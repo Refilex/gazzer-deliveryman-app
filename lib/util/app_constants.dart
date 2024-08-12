@@ -1,11 +1,11 @@
-import 'package:stackfood_multivendor_driver/feature/language/domain/models/language_model.dart';
-import 'package:stackfood_multivendor_driver/util/images.dart';
+import 'package:gazzer_delivery/feature/language/domain/models/language_model.dart';
+import 'package:gazzer_delivery/util/images.dart';
 
 class AppConstants {
   static const String appName = 'Gazzer Delivery';
   static const double appVersion = 7.6;
 
-  static const String baseUrl = 'https://carrot.refilex.com';
+  static const String baseUrl = 'http://gazzer.test';
   static const String configUri = '/api/v1/config';
   static const String forgerPasswordUri =
       '/api/v1/auth/delivery-man/forgot-password';
@@ -76,7 +76,7 @@ class AppConstants {
 
   // Shared Key
   static const String theme = 'theme';
-  static const String token = 'stackfood_multivendor_driver_token';
+  static const String token = 'gazzer_delivery_token';
   static const String countryCode = 'country_code';
   static const String languageCode = 'language_code';
   static const String userPassword = 'user_password';

@@ -1,8 +1,8 @@
 import 'dart:async';
-import 'package:stackfood_multivendor_driver/feature/order/controllers/order_controller.dart';
-import 'package:stackfood_multivendor_driver/feature/order/widgets/order_requset_widget.dart';
-import 'package:stackfood_multivendor_driver/util/dimensions.dart';
-import 'package:stackfood_multivendor_driver/common/widgets/custom_app_bar_widget.dart';
+import 'package:gazzer_delivery/feature/order/controllers/order_controller.dart';
+import 'package:gazzer_delivery/feature/order/widgets/order_requset_widget.dart';
+import 'package:gazzer_delivery/util/dimensions.dart';
+import 'package:gazzer_delivery/common/widgets/custom_app_bar_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 

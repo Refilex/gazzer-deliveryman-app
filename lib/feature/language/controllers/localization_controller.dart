@@ -1,6 +1,6 @@
-import 'package:stackfood_multivendor_driver/feature/language/domain/services/language_service_interface.dart';
-import 'package:stackfood_multivendor_driver/feature/language/domain/models/language_model.dart';
-import 'package:stackfood_multivendor_driver/util/app_constants.dart';
+import 'package:gazzer_delivery/feature/language/domain/services/language_service_interface.dart';
+import 'package:gazzer_delivery/feature/language/domain/models/language_model.dart';
+import 'package:gazzer_delivery/util/app_constants.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 

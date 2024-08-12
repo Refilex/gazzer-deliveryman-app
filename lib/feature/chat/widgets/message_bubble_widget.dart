@@ -1,13 +1,13 @@
-import 'package:stackfood_multivendor_driver/feature/splash/controllers/splash_controller.dart';
-import 'package:stackfood_multivendor_driver/common/models/config_model.dart';
-import 'package:stackfood_multivendor_driver/feature/chat/domain/models/conversation_model.dart';
-import 'package:stackfood_multivendor_driver/feature/chat/domain/models/message_model.dart';
-import 'package:stackfood_multivendor_driver/feature/chat/widgets/image_diaglog_widget.dart';
-import 'package:stackfood_multivendor_driver/helper/date_converter_helper.dart';
-import 'package:stackfood_multivendor_driver/helper/user_type_helper.dart';
-import 'package:stackfood_multivendor_driver/util/dimensions.dart';
-import 'package:stackfood_multivendor_driver/util/styles.dart';
-import 'package:stackfood_multivendor_driver/common/widgets/custom_image_widget.dart';
+import 'package:gazzer_delivery/feature/splash/controllers/splash_controller.dart';
+import 'package:gazzer_delivery/common/models/config_model.dart';
+import 'package:gazzer_delivery/feature/chat/domain/models/conversation_model.dart';
+import 'package:gazzer_delivery/feature/chat/domain/models/message_model.dart';
+import 'package:gazzer_delivery/feature/chat/widgets/image_diaglog_widget.dart';
+import 'package:gazzer_delivery/helper/date_converter_helper.dart';
+import 'package:gazzer_delivery/helper/user_type_helper.dart';
+import 'package:gazzer_delivery/util/dimensions.dart';
+import 'package:gazzer_delivery/util/styles.dart';
+import 'package:gazzer_delivery/common/widgets/custom_image_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 

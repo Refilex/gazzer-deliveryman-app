@@ -1,6 +1,6 @@
-import 'package:stackfood_multivendor_driver/feature/notification/domain/models/notification_model.dart';
-import 'package:stackfood_multivendor_driver/feature/notification/domain/repositories/notification_repository_interface.dart';
-import 'package:stackfood_multivendor_driver/feature/notification/domain/services/notification_service_interface.dart';
+import 'package:gazzer_delivery/feature/notification/domain/models/notification_model.dart';
+import 'package:gazzer_delivery/feature/notification/domain/repositories/notification_repository_interface.dart';
+import 'package:gazzer_delivery/feature/notification/domain/services/notification_service_interface.dart';
 
 class NotificationService implements NotificationServiceInterface {
   final NotificationRepositoryInterface notificationRepositoryInterface;

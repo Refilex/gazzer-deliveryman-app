@@ -1,10 +1,10 @@
-import 'package:stackfood_multivendor_driver/feature/chat/domain/services/chat_service_interface.dart';
-import 'package:stackfood_multivendor_driver/api/api_client.dart';
-import 'package:stackfood_multivendor_driver/feature/notification/domain/models/notification_body_model.dart';
-import 'package:stackfood_multivendor_driver/feature/chat/domain/models/conversation_model.dart';
-import 'package:stackfood_multivendor_driver/feature/chat/domain/models/message_model.dart';
-import 'package:stackfood_multivendor_driver/feature/profile/controllers/profile_controller.dart';
-import 'package:stackfood_multivendor_driver/helper/user_type_helper.dart';
+import 'package:gazzer_delivery/feature/chat/domain/services/chat_service_interface.dart';
+import 'package:gazzer_delivery/api/api_client.dart';
+import 'package:gazzer_delivery/feature/notification/domain/models/notification_body_model.dart';
+import 'package:gazzer_delivery/feature/chat/domain/models/conversation_model.dart';
+import 'package:gazzer_delivery/feature/chat/domain/models/message_model.dart';
+import 'package:gazzer_delivery/feature/profile/controllers/profile_controller.dart';
+import 'package:gazzer_delivery/helper/user_type_helper.dart';
 import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
 

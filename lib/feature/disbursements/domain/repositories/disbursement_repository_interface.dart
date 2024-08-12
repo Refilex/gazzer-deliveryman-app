@@ -1,4 +1,4 @@
-import 'package:stackfood_multivendor_driver/interface/repository_interface.dart';
+import 'package:gazzer_delivery/interface/repository_interface.dart';
 
 abstract class DisbursementRepositoryInterface implements RepositoryInterface {
   Future<dynamic> addWithdraw(Map<String?, String> data);

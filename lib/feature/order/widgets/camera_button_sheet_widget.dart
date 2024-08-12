@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:stackfood_multivendor_driver/feature/order/controllers/order_controller.dart';
-import 'package:stackfood_multivendor_driver/util/dimensions.dart';
-import 'package:stackfood_multivendor_driver/util/styles.dart';
+import 'package:gazzer_delivery/feature/order/controllers/order_controller.dart';
+import 'package:gazzer_delivery/util/dimensions.dart';
+import 'package:gazzer_delivery/util/styles.dart';
 
 class CameraButtonSheetWidget extends StatelessWidget {
   const CameraButtonSheetWidget({super.key});
