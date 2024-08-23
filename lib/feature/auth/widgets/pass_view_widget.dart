@@ -1,6 +1,6 @@
-import 'package:stackfood_multivendor_driver/feature/auth/controllers/auth_controller.dart';
-import 'package:stackfood_multivendor_driver/feature/auth/widgets/password_check_widget.dart';
-import 'package:stackfood_multivendor_driver/util/dimensions.dart';
+import 'package:gazzer_delivery/feature/auth/controllers/auth_controller.dart';
+import 'package:gazzer_delivery/feature/auth/widgets/password_check_widget.dart';
+import 'package:gazzer_delivery/util/dimensions.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 

@@ -1,4 +1,4 @@
-import 'package:stackfood_multivendor_driver/interface/repository_interface.dart';
+import 'package:gazzer_delivery/interface/repository_interface.dart';
 
 abstract class AddressRepositoryInterface implements RepositoryInterface {
   Future<dynamic> getZone(String lat, String lng);

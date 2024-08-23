@@ -1,8 +1,8 @@
 import 'package:image_picker/image_picker.dart';
-import 'package:stackfood_multivendor_driver/api/api_client.dart';
-import 'package:stackfood_multivendor_driver/feature/order/domain/models/ignore_model.dart';
-import 'package:stackfood_multivendor_driver/feature/order/domain/models/order_model.dart';
-import 'package:stackfood_multivendor_driver/feature/order/domain/models/update_status_body.dart';
+import 'package:gazzer_delivery/api/api_client.dart';
+import 'package:gazzer_delivery/feature/order/domain/models/ignore_model.dart';
+import 'package:gazzer_delivery/feature/order/domain/models/order_model.dart';
+import 'package:gazzer_delivery/feature/order/domain/models/update_status_body.dart';
 
 abstract class OrderServiceInterface {
   Future<dynamic> getAllOrders();

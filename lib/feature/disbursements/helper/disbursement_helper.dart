@@ -1,9 +1,9 @@
-import 'package:stackfood_multivendor_driver/common/controllers/theme_controller.dart';
-import 'package:stackfood_multivendor_driver/feature/disbursements/controllers/disbursement_controller.dart';
-import 'package:stackfood_multivendor_driver/feature/splash/controllers/splash_controller.dart';
-import 'package:stackfood_multivendor_driver/feature/disbursements/widgets/withdraw_method_attention_dialog_widget.dart';
-import 'package:stackfood_multivendor_driver/feature/profile/controllers/profile_controller.dart';
-import 'package:stackfood_multivendor_driver/util/dimensions.dart';
+import 'package:gazzer_delivery/common/controllers/theme_controller.dart';
+import 'package:gazzer_delivery/feature/disbursements/controllers/disbursement_controller.dart';
+import 'package:gazzer_delivery/feature/splash/controllers/splash_controller.dart';
+import 'package:gazzer_delivery/feature/disbursements/widgets/withdraw_method_attention_dialog_widget.dart';
+import 'package:gazzer_delivery/feature/profile/controllers/profile_controller.dart';
+import 'package:gazzer_delivery/util/dimensions.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 

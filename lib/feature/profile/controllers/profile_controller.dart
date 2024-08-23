@@ -1,17 +1,17 @@
 import 'dart:async';
 import 'package:flutter/cupertino.dart';
-import 'package:stackfood_multivendor_driver/common/models/response_model.dart';
-import 'package:stackfood_multivendor_driver/common/widgets/confirmation_dialog_widget.dart';
-import 'package:stackfood_multivendor_driver/common/widgets/custom_snackbar_widget.dart';
-import 'package:stackfood_multivendor_driver/feature/auth/controllers/auth_controller.dart';
-import 'package:stackfood_multivendor_driver/feature/profile/domain/models/profile_model.dart';
-import 'package:stackfood_multivendor_driver/feature/profile/domain/models/shift_model.dart';
-import 'package:stackfood_multivendor_driver/feature/profile/domain/services/profile_service_interface.dart';
-import 'package:stackfood_multivendor_driver/helper/route_helper.dart';
-import 'package:stackfood_multivendor_driver/util/images.dart';
+import 'package:gazzer_delivery/common/models/response_model.dart';
+import 'package:gazzer_delivery/common/widgets/confirmation_dialog_widget.dart';
+import 'package:gazzer_delivery/common/widgets/custom_snackbar_widget.dart';
+import 'package:gazzer_delivery/feature/auth/controllers/auth_controller.dart';
+import 'package:gazzer_delivery/feature/profile/domain/models/profile_model.dart';
+import 'package:gazzer_delivery/feature/profile/domain/models/shift_model.dart';
+import 'package:gazzer_delivery/feature/profile/domain/services/profile_service_interface.dart';
+import 'package:gazzer_delivery/helper/route_helper.dart';
+import 'package:gazzer_delivery/util/images.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:get/get.dart';
-import 'package:stackfood_multivendor_driver/feature/profile/domain/models/record_location_body.dart';
+import 'package:gazzer_delivery/feature/profile/domain/models/record_location_body.dart';
 import 'package:image_picker/image_picker.dart';
 
 class ProfileController extends GetxController implements GetxService {

@@ -1,7 +1,7 @@
-import 'package:stackfood_multivendor_driver/feature/order/controllers/order_controller.dart';
-import 'package:stackfood_multivendor_driver/feature/order/widgets/camera_button_sheet_widget.dart';
-import 'package:stackfood_multivendor_driver/util/dimensions.dart';
-import 'package:stackfood_multivendor_driver/util/styles.dart';
+import 'package:gazzer_delivery/feature/order/controllers/order_controller.dart';
+import 'package:gazzer_delivery/feature/order/widgets/camera_button_sheet_widget.dart';
+import 'package:gazzer_delivery/util/dimensions.dart';
+import 'package:gazzer_delivery/util/styles.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 

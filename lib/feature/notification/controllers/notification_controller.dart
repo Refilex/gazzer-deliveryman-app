@@ -1,6 +1,6 @@
-import 'package:stackfood_multivendor_driver/feature/notification/domain/services/notification_service_interface.dart';
-import 'package:stackfood_multivendor_driver/feature/notification/domain/models/notification_model.dart';
-import 'package:stackfood_multivendor_driver/helper/date_converter_helper.dart';
+import 'package:gazzer_delivery/feature/notification/domain/services/notification_service_interface.dart';
+import 'package:gazzer_delivery/feature/notification/domain/models/notification_model.dart';
+import 'package:gazzer_delivery/helper/date_converter_helper.dart';
 import 'package:get/get.dart';
 
 class NotificationController extends GetxController implements GetxService {

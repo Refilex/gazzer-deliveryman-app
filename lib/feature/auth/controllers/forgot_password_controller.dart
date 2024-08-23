@@ -1,8 +1,8 @@
-import 'package:stackfood_multivendor_driver/common/models/response_model.dart';
-import 'package:stackfood_multivendor_driver/common/widgets/custom_snackbar_widget.dart';
-import 'package:stackfood_multivendor_driver/feature/auth/domain/services/forgot_password_service_interface.dart';
+import 'package:gazzer_delivery/common/models/response_model.dart';
+import 'package:gazzer_delivery/common/widgets/custom_snackbar_widget.dart';
+import 'package:gazzer_delivery/feature/auth/domain/services/forgot_password_service_interface.dart';
 import 'package:get/get.dart';
-import 'package:stackfood_multivendor_driver/feature/profile/domain/models/profile_model.dart';
+import 'package:gazzer_delivery/feature/profile/domain/models/profile_model.dart';
 
 class ForgotPasswordController extends GetxController implements GetxService {
   final ForgotPasswordServiceInterface forgotPasswordServiceInterface;

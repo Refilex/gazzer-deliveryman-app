@@ -1,4 +1,4 @@
-import 'package:stackfood_multivendor_driver/util/dimensions.dart';
+import 'package:gazzer_delivery/util/dimensions.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 

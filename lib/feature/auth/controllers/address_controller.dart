@@ -3,12 +3,12 @@ import 'dart:convert';
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
-import 'package:stackfood_multivendor_driver/feature/auth/domain/services/address_service_interface.dart';
-import 'package:stackfood_multivendor_driver/feature/profile/controllers/profile_controller.dart';
-import 'package:stackfood_multivendor_driver/feature/splash/controllers/splash_controller.dart';
-import 'package:stackfood_multivendor_driver/feature/auth/domain/models/address_model.dart';
-import 'package:stackfood_multivendor_driver/feature/auth/domain/models/zone_model.dart';
-import 'package:stackfood_multivendor_driver/feature/auth/domain/models/zone_response_model.dart';
+import 'package:gazzer_delivery/feature/auth/domain/services/address_service_interface.dart';
+import 'package:gazzer_delivery/feature/profile/controllers/profile_controller.dart';
+import 'package:gazzer_delivery/feature/splash/controllers/splash_controller.dart';
+import 'package:gazzer_delivery/feature/auth/domain/models/address_model.dart';
+import 'package:gazzer_delivery/feature/auth/domain/models/zone_model.dart';
+import 'package:gazzer_delivery/feature/auth/domain/models/zone_response_model.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 

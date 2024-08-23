@@ -1,10 +1,10 @@
-import 'package:stackfood_multivendor_driver/common/widgets/custom_image_widget.dart';
-import 'package:stackfood_multivendor_driver/feature/splash/controllers/splash_controller.dart';
-import 'package:stackfood_multivendor_driver/feature/order/domain/models/order_details_model.dart';
-import 'package:stackfood_multivendor_driver/feature/order/domain/models/order_model.dart';
-import 'package:stackfood_multivendor_driver/helper/price_converter_helper.dart';
-import 'package:stackfood_multivendor_driver/util/dimensions.dart';
-import 'package:stackfood_multivendor_driver/util/styles.dart';
+import 'package:gazzer_delivery/common/widgets/custom_image_widget.dart';
+import 'package:gazzer_delivery/feature/splash/controllers/splash_controller.dart';
+import 'package:gazzer_delivery/feature/order/domain/models/order_details_model.dart';
+import 'package:gazzer_delivery/feature/order/domain/models/order_model.dart';
+import 'package:gazzer_delivery/helper/price_converter_helper.dart';
+import 'package:gazzer_delivery/util/dimensions.dart';
+import 'package:gazzer_delivery/util/styles.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 

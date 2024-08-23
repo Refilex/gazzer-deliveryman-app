@@ -1,4 +1,4 @@
-package com.sixamtech.stack_food_delivery
+package com.refilex.gazzer.deliveryapp
 
 import android.content.Intent
 import android.os.Bundle

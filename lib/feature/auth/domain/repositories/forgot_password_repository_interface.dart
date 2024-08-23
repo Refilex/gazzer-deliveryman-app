@@ -1,5 +1,5 @@
-import 'package:stackfood_multivendor_driver/feature/profile/domain/models/profile_model.dart';
-import 'package:stackfood_multivendor_driver/interface/repository_interface.dart';
+import 'package:gazzer_delivery/feature/profile/domain/models/profile_model.dart';
+import 'package:gazzer_delivery/interface/repository_interface.dart';
 
 abstract class ForgotPasswordRepositoryInterface
     implements RepositoryInterface {

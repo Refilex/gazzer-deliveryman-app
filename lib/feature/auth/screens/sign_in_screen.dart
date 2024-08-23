@@ -1,19 +1,19 @@
 import 'package:country_code_picker/country_code_picker.dart';
-import 'package:flutter/material.dart';
-import 'package:get/get.dart';
-import 'package:stackfood_multivendor_driver/common/widgets/custom_button_widget.dart';
 import 'package:stackfood_multivendor_driver/common/widgets/custom_snackbar_widget.dart';
-import 'package:stackfood_multivendor_driver/common/widgets/custom_text_field_widget.dart';
 import 'package:stackfood_multivendor_driver/feature/auth/controllers/auth_controller.dart';
 import 'package:stackfood_multivendor_driver/feature/language/controllers/localization_controller.dart';
-import 'package:stackfood_multivendor_driver/feature/profile/controllers/profile_controller.dart';
 import 'package:stackfood_multivendor_driver/feature/splash/controllers/splash_controller.dart';
+import 'package:stackfood_multivendor_driver/feature/profile/controllers/profile_controller.dart';
 import 'package:stackfood_multivendor_driver/helper/custom_validator.dart';
 import 'package:stackfood_multivendor_driver/helper/route_helper.dart';
 import 'package:stackfood_multivendor_driver/util/app_constants.dart';
 import 'package:stackfood_multivendor_driver/util/dimensions.dart';
 import 'package:stackfood_multivendor_driver/util/images.dart';
 import 'package:stackfood_multivendor_driver/util/styles.dart';
+import 'package:stackfood_multivendor_driver/common/widgets/custom_button_widget.dart';
+import 'package:stackfood_multivendor_driver/common/widgets/custom_text_field_widget.dart';
+import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 class SignInViewScreen extends StatelessWidget {
   SignInViewScreen({super.key});
@@ -133,7 +133,7 @@ class SignInViewScreen extends StatelessWidget {
                     TextButton(
                       onPressed: () =>
                           Get.toNamed(RouteHelper.getForgotPassRoute()),
-                      child: Text('forgot_password'.tr),
+                      child: Text('${'forgot_password'.tr}?'),
                     ),
                   ]),
                   const SizedBox(height: 50),
