@@ -17,12 +17,12 @@ class OrderScreen extends StatefulWidget {
 class _OrderScreenState extends State<OrderScreen> {
   int _selectedIndex = 0;
   final List<String> excludedStatuses = [
-    'Delivered',
-    'Failed',
-    'Canceled',
-    'Refund requested',
-    'Refunded',
-    'Refund request canceled'
+    'delivered'.tr,
+    'failed'.tr,
+    'canceled'.tr,
+    'refund_requested'.tr,
+    'refunded'.tr,
+    'refund_request_canceled'.tr
   ];
 
   @override
@@ -74,27 +74,27 @@ class _OrderScreenState extends State<OrderScreen> {
 
                     return InkWell(
                       onTap: () async {
-                        if (excludedStatuses[index] == "Delivered") {
+                        if (excludedStatuses[index] == 'delivered'.tr) {
                           await orderController.getCompletedOrders(
                               1, "delivered");
                         }
-                        if (excludedStatuses[index] == "Failed") {
+                        if (excludedStatuses[index] == 'failed'.tr) {
                           await orderController.getCompletedOrders(1, "failed");
                         }
-                        if (excludedStatuses[index] == "Canceled") {
+                        if (excludedStatuses[index] == 'canceled'.tr) {
                           await orderController.getCompletedOrders(
                               1, "canceled");
                         }
-                        if (excludedStatuses[index] == "Refund requested") {
+                        if (excludedStatuses[index] == 'refund_requested'.tr) {
                           await orderController.getCompletedOrders(
                               1, "refund_requested");
                         }
-                        if (excludedStatuses[index] == "Refunded") {
+                        if (excludedStatuses[index] == 'refunded'.tr) {
                           await orderController.getCompletedOrders(
                               1, "refunded");
                         }
                         if (excludedStatuses[index] ==
-                            "Refund request canceled") {
+                            'refund_request_canceled'.tr) {
                           await orderController.getCompletedOrders(
                               1, "refund_request_canceled");
                         }

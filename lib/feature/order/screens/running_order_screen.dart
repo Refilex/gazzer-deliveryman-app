@@ -17,13 +17,13 @@ class RunningOrderScreen extends StatefulWidget {
 class _RunningOrderScreenState extends State<RunningOrderScreen> {
   int _selectedIndex = 0; // Initially set to 0 for "Active order"
   final List<String> excludedStatuses = [
-    'Active order',
-    'Delivered',
-    'Failed',
-    'Canceled',
-    'Refund requested',
-    'Refunded',
-    'Refund request canceled'
+    'active_order'.tr,
+    'delivered'.tr,
+    'failed'.tr,
+    'canceled'.tr,
+    'refund_requested'.tr,
+    'refunded'.tr,
+    'refund_request_canceled'.tr
   ];
 
   @override
@@ -76,11 +76,37 @@ class _RunningOrderScreenState extends State<RunningOrderScreen> {
                     String category = excludedStatuses[index];
                     return InkWell(
                       onTap: () async {
-                        if (excludedStatuses[index] == "Active order") {
+                        if (excludedStatuses[index] == 'active_order'.tr) {
                           await Get.find<OrderController>().getCurrentOrders();
                         } else {
-                          await orderController.getCompletedOrders(
-                              1, _getOrderStatusCode(excludedStatuses[index]));
+                          if (excludedStatuses[index] == 'delivered'.tr) {
+                            await orderController.getCompletedOrders(
+                                1, "delivered");
+                          }
+                          if (excludedStatuses[index] == 'failed'.tr) {
+                            await orderController.getCompletedOrders(
+                                1, "failed");
+                          }
+                          if (excludedStatuses[index] == 'canceled'.tr) {
+                            await orderController.getCompletedOrders(
+                                1, "canceled");
+                          }
+                          if (excludedStatuses[index] ==
+                              'refund_requested'.tr) {
+                            await orderController.getCompletedOrders(
+                                1, "refund_requested");
+                          }
+                          if (excludedStatuses[index] == 'refunded'.tr) {
+                            await orderController.getCompletedOrders(
+                                1, "refunded");
+                          }
+                          if (excludedStatuses[index] ==
+                              'refund_request_canceled'.tr) {
+                            await orderController.getCompletedOrders(
+                                1, "refund_request_canceled");
+                          }
+                          // await orderController.getCompletedOrders(
+                          //     1, _getOrderStatusCode(excludedStatuses[index]));
                         }
                         setState(() {
                           _selectedIndex =
@@ -121,11 +147,33 @@ class _RunningOrderScreenState extends State<RunningOrderScreen> {
             Expanded(
               child: RefreshIndicator(
                 onRefresh: () async {
-                  if (excludedStatuses[_selectedIndex] == "Active order") {
+                  if (excludedStatuses[_selectedIndex] == 'active_order'.tr) {
                     await orderController.getCurrentOrders();
                   } else {
-                    await orderController.getCompletedOrders(1,
-                        _getOrderStatusCode(excludedStatuses[_selectedIndex]));
+                    if (excludedStatuses[_selectedIndex] == 'delivered'.tr) {
+                      await orderController.getCompletedOrders(1, "delivered");
+                    }
+                    if (excludedStatuses[_selectedIndex] == 'failed'.tr) {
+                      await orderController.getCompletedOrders(1, "failed");
+                    }
+                    if (excludedStatuses[_selectedIndex] == 'canceled'.tr) {
+                      await orderController.getCompletedOrders(1, "canceled");
+                    }
+                    if (excludedStatuses[_selectedIndex] ==
+                        'refund_requested'.tr) {
+                      await orderController.getCompletedOrders(
+                          1, "refund_requested");
+                    }
+                    if (excludedStatuses[_selectedIndex] == 'refunded'.tr) {
+                      await orderController.getCompletedOrders(1, "refunded");
+                    }
+                    if (excludedStatuses[_selectedIndex] ==
+                        'refund_request_canceled'.tr) {
+                      await orderController.getCompletedOrders(
+                          1, "refund_request_canceled");
+                    }
+                    // await orderController.getCompletedOrders(1,
+                    //     _getOrderStatusCode(excludedStatuses[_selectedIndex]));
                   }
                 },
                 child: SingleChildScrollView(
@@ -138,7 +186,7 @@ class _RunningOrderScreenState extends State<RunningOrderScreen> {
                         children: [
                           // Display Active Order view or Completed Orders view based on selectedIndex
                           if (excludedStatuses[_selectedIndex] ==
-                              "Active order")
+                              'active_order'.tr)
                             _buildActiveOrderView(orderController)
                           else
                             _buildOrderListView(orderController),
@@ -164,24 +212,24 @@ class _RunningOrderScreenState extends State<RunningOrderScreen> {
   }
 
   // Helper method to get order status code
-  String _getOrderStatusCode(String status) {
-    switch (status) {
-      case 'Delivered':
-        return 'delivered';
-      case 'Failed':
-        return 'failed';
-      case 'Canceled':
-        return 'canceled';
-      case 'Refund requested':
-        return 'refund_requested';
-      case 'Refunded':
-        return 'refunded';
-      case 'Refund request canceled':
-        return 'refund_request_canceled';
-      default:
-        return '';
-    }
-  }
+  // String _getOrderStatusCode(String status) {
+  //   switch (status) {
+  //     case 'Delivered':
+  //       return 'delivered';
+  //     case 'Failed':
+  //       return 'failed';
+  //     case 'Canceled':
+  //       return 'canceled';
+  //     case 'Refund requested':
+  //       return 'refund_requested';
+  //     case 'Refunded':
+  //       return 'refunded';
+  //     case 'Refund request canceled':
+  //       return 'refund_request_canceled';
+  //     default:
+  //       return '';
+  //   }
+  // }
 
   // Widget for displaying active orders
   Widget _buildActiveOrderView(OrderController orderController) {
@@ -189,11 +237,11 @@ class _RunningOrderScreenState extends State<RunningOrderScreen> {
             orderController.currentOrderList!.isNotEmpty
         ? ListView.builder(
             padding: const EdgeInsets.all(Dimensions.paddingSizeSmall),
-      itemCount: orderController.currentOrderList!.length,
-      physics: const NeverScrollableScrollPhysics(),
-      shrinkWrap: true,
-      itemBuilder: (context, index) {
-        return HistoryOrderWidget(
+            itemCount: orderController.currentOrderList!.length,
+            physics: const NeverScrollableScrollPhysics(),
+            shrinkWrap: true,
+            itemBuilder: (context, index) {
+              return HistoryOrderWidget(
                 orderModel: orderController.currentOrderList![index],
                 isRunning: true,
                 index: index,
@@ -209,11 +257,11 @@ class _RunningOrderScreenState extends State<RunningOrderScreen> {
             orderController.completedOrderList!.isNotEmpty
         ? ListView.builder(
             padding: const EdgeInsets.all(Dimensions.paddingSizeSmall),
-      itemCount: orderController.completedOrderList!.length,
-      physics: const NeverScrollableScrollPhysics(),
-      shrinkWrap: true,
-      itemBuilder: (context, index) {
-        return HistoryOrderWidget(
+            itemCount: orderController.completedOrderList!.length,
+            physics: const NeverScrollableScrollPhysics(),
+            shrinkWrap: true,
+            itemBuilder: (context, index) {
+              return HistoryOrderWidget(
                 orderModel: orderController.completedOrderList![index],
                 isRunning: false,
                 index: index,
