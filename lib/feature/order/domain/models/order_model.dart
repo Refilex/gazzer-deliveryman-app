@@ -80,6 +80,7 @@ class OrderModel {
   double? referrerBonusAmount;
   List<Restaurant>? restaurants;
   String? couponCode;
+  String? totalDeliveryTime;
 
   OrderModel({
     this.id,
@@ -128,7 +129,9 @@ class OrderModel {
     this.extraPackagingAmount,
     this.referrerBonusAmount,
     this.restaurants,
-      this.couponCode});
+    this.couponCode,
+    this.totalDeliveryTime,
+  });
 
   OrderModel.fromJson(Map<String, dynamic> json) {
     id = json['id'];
@@ -201,11 +204,11 @@ class OrderModel {
     extraPackagingAmount = json['extra_packaging_amount']?.toDouble();
     referrerBonusAmount = json['ref_bonus_amount']?.toDouble();
     couponCode = json['coupon_code'];
-
+    totalDeliveryTime = json['total_delivery_time'];
     restaurants = (json['restaurants'] as List?)
-        ?.map((item) => Restaurant.fromJson(item))
-        .toList() ?? [];
-
+            ?.map((item) => Restaurant.fromJson(item))
+            .toList() ??
+        [];
   }
 
   Map<String, dynamic> toJson() {
@@ -262,6 +265,7 @@ class OrderModel {
     data['ref_bonus_amount'] = referrerBonusAmount;
     data['restaurants'] = restaurants;
     data['coupon_code'] = couponCode;
+    data['total_delivery_time'] = totalDeliveryTime;
     return data;
   }
 }

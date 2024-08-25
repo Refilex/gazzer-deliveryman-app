@@ -133,7 +133,7 @@ class SignInViewScreen extends StatelessWidget {
                     TextButton(
                       onPressed: () =>
                           Get.toNamed(RouteHelper.getForgotPassRoute()),
-                      child: Text('${'forgot_password'.tr}?'),
+                      child: Text('forgot_password'.tr),
                     ),
                   ]),
                   const SizedBox(height: 50),

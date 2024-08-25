@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 import 'package:gazzer_delivery/common/widgets/custom_app_bar_widget.dart';
 import 'package:gazzer_delivery/feature/order/controllers/order_controller.dart';
 import 'package:gazzer_delivery/feature/order/widgets/history_order_widget.dart';
 import 'package:gazzer_delivery/helper/custom_print_helper.dart';
 import 'package:gazzer_delivery/util/dimensions.dart';
 import 'package:gazzer_delivery/util/styles.dart';
+import 'package:get/get.dart';
 
 class RunningOrderScreen extends StatefulWidget {
   const RunningOrderScreen({super.key});
@@ -211,26 +211,6 @@ class _RunningOrderScreenState extends State<RunningOrderScreen> {
     );
   }
 
-  // Helper method to get order status code
-  // String _getOrderStatusCode(String status) {
-  //   switch (status) {
-  //     case 'Delivered':
-  //       return 'delivered';
-  //     case 'Failed':
-  //       return 'failed';
-  //     case 'Canceled':
-  //       return 'canceled';
-  //     case 'Refund requested':
-  //       return 'refund_requested';
-  //     case 'Refunded':
-  //       return 'refunded';
-  //     case 'Refund request canceled':
-  //       return 'refund_request_canceled';
-  //     default:
-  //       return '';
-  //   }
-  // }
-
   // Widget for displaying active orders
   Widget _buildActiveOrderView(OrderController orderController) {
     return orderController.currentOrderList != null &&
@@ -248,7 +228,9 @@ class _RunningOrderScreenState extends State<RunningOrderScreen> {
               );
             },
           )
-        : Center(child: Text('no_active_orders_found'.tr));
+        : SizedBox(
+            height: MediaQuery.of(context).size.height - 180,
+            child: Center(child: Text('no_active_orders_found'.tr)));
   }
 
   // Widget for displaying completed orders
@@ -268,6 +250,9 @@ class _RunningOrderScreenState extends State<RunningOrderScreen> {
               );
             },
           )
-        : Center(child: Text('no_completed_orders_found'.tr));
+        : SizedBox(
+            height: MediaQuery.of(context).size.height - 180,
+            child: Center(child: Text('no_order_found'.tr)),
+          );
   }
 }

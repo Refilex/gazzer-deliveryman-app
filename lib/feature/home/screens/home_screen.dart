@@ -1,9 +1,6 @@
 import 'package:disable_battery_optimization/disable_battery_optimization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_switch/flutter_switch.dart';
-import 'package:geolocator/geolocator.dart';
-import 'package:get/get.dart';
-import 'package:shimmer_animation/shimmer_animation.dart';
 import 'package:gazzer_delivery/common/widgets/confirmation_dialog_widget.dart';
 import 'package:gazzer_delivery/common/widgets/custom_alert_dialog_widget.dart';
 import 'package:gazzer_delivery/common/widgets/custom_button_widget.dart';
@@ -24,6 +21,9 @@ import 'package:gazzer_delivery/util/app_constants.dart';
 import 'package:gazzer_delivery/util/dimensions.dart';
 import 'package:gazzer_delivery/util/images.dart';
 import 'package:gazzer_delivery/util/styles.dart';
+import 'package:geolocator/geolocator.dart';
+import 'package:get/get.dart';
+import 'package:shimmer_animation/shimmer_animation.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
@@ -100,7 +100,7 @@ class HomeScreen extends StatelessWidget {
               return (profileController.profileModel != null &&
                       orderController.currentOrderList != null)
                   ? FlutterSwitch(
-                      width: 75,
+                      width: 80,
                       height: 30,
                       valueFontSize: Dimensions.fontSizeExtraSmall,
                       showOnOff: true,

@@ -3,9 +3,6 @@ import 'dart:io';
 
 import 'package:dotted_border/dotted_border.dart';
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
-import 'package:image_picker/image_picker.dart';
-import 'package:photo_view/photo_view.dart';
 import 'package:gazzer_delivery/common/widgets/confirmation_dialog_widget.dart';
 import 'package:gazzer_delivery/common/widgets/custom_app_bar_widget.dart';
 import 'package:gazzer_delivery/common/widgets/custom_button_widget.dart';
@@ -36,6 +33,9 @@ import 'package:gazzer_delivery/helper/route_helper.dart';
 import 'package:gazzer_delivery/util/dimensions.dart';
 import 'package:gazzer_delivery/util/images.dart';
 import 'package:gazzer_delivery/util/styles.dart';
+import 'package:get/get.dart';
+import 'package:image_picker/image_picker.dart';
+import 'package:photo_view/photo_view.dart';
 
 class OrderDetailsScreen extends StatefulWidget {
   final int? orderId;
@@ -242,7 +242,8 @@ class _OrderDetailsScreenState extends State<OrderDetailsScreen> {
                                   controllerOrderModel.orderStatus !=
                                       'refunded' &&
                                   controllerOrderModel.orderStatus !=
-                                      'refund_request_canceled')
+                                      'refund_request_canceled' &&
+                                  order.totalDeliveryTime != null)
                               ? Column(children: [
                                   ClipRRect(
                                       borderRadius: BorderRadius.circular(10),
@@ -259,37 +260,12 @@ class _OrderDetailsScreenState extends State<OrderDetailsScreen> {
                                   const SizedBox(
                                       height: Dimensions.paddingSizeExtraSmall),
                                   Center(
-                                    child: Row(
-                                        mainAxisSize: MainAxisSize.min,
-                                        children: [
-                                          Text(
-                                            DateConverter.differenceInMinute(
-                                                        controllerOrderModel
-                                                            .restaurantDeliveryTime,
-                                                        controllerOrderModel
-                                                            .createdAt,
-                                                        controllerOrderModel
-                                                            .processingTime,
-                                                        controllerOrderModel
-                                                            .scheduleAt) <
-                                                    5
-                                                ? '1 - 5'
-                                                : '${DateConverter.differenceInMinute(controllerOrderModel.restaurantDeliveryTime, controllerOrderModel.createdAt, controllerOrderModel.processingTime, controllerOrderModel.scheduleAt) - 5} '
-                                                    '- ${DateConverter.differenceInMinute(controllerOrderModel.restaurantDeliveryTime, controllerOrderModel.createdAt, controllerOrderModel.processingTime, controllerOrderModel.scheduleAt)}',
-                                            style: robotoBold.copyWith(
-                                                fontSize: Dimensions
-                                                    .fontSizeExtraLarge),
-                                          ),
-                                          const SizedBox(
-                                              width: Dimensions
-                                                  .paddingSizeExtraSmall),
-                                          Text('min'.tr,
-                                              style: robotoMedium.copyWith(
-                                                  fontSize:
-                                                      Dimensions.fontSizeLarge,
-                                                  color: Theme.of(context)
-                                                      .primaryColor)),
-                                        ]),
+                                    child: Text(
+                                      order.totalDeliveryTime!,
+                                      style: robotoBold.copyWith(
+                                          fontSize:
+                                              Dimensions.fontSizeOverLarge),
+                                    ),
                                   ),
                                   const SizedBox(
                                       height: Dimensions.paddingSizeExtraLarge),
@@ -620,7 +596,10 @@ class _OrderDetailsScreenState extends State<OrderDetailsScreen> {
                                   Text('item_price'.tr, style: robotoRegular),
                                   Text(
                                       PriceConverter.convertPrice(
-                                          order.orderAmount! - deliveryCharge),
+                                          order.couponCode == "FreeDel20"
+                                              ? order.orderAmount!
+                                              : order.orderAmount! -
+                                                  deliveryCharge),
                                       style: robotoRegular,
                                       textDirection: TextDirection.ltr),
                                 ]),
@@ -650,7 +629,10 @@ class _OrderDetailsScreenState extends State<OrderDetailsScreen> {
                                       style: robotoMedium),
                                   Text(
                                       PriceConverter.convertPrice(
-                                          order.orderAmount! - deliveryCharge),
+                                          order.couponCode == "FreeDel20"
+                                              ? order.orderAmount!
+                                              : order.orderAmount! -
+                                                  deliveryCharge),
                                       style: robotoMedium,
                                       textDirection: TextDirection.ltr),
                                 ]),
@@ -762,7 +744,7 @@ class _OrderDetailsScreenState extends State<OrderDetailsScreen> {
                                 children: [
                                   Text('delivery_fee'.tr, style: robotoRegular),
                                   Text(
-                                      '(+) ${PriceConverter.convertPrice(order.couponCode == "freeDel20" ? 0 : deliveryCharge)}',
+                                      '(+) ${PriceConverter.convertPrice(order.couponCode == "FreeDel20" ? 0 : deliveryCharge)}',
                                       style: robotoRegular,
                                       textDirection: TextDirection.ltr),
                                 ]),
