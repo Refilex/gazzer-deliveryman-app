@@ -597,9 +597,10 @@ class _OrderDetailsScreenState extends State<OrderDetailsScreen> {
                                   Text(
                                       PriceConverter.convertPrice(
                                           order.couponCode == "FreeDel20"
-                                              ? order.orderAmount!
+                                              ? order.orderAmount! - addOns
                                               : order.orderAmount! -
-                                                  deliveryCharge),
+                                                  deliveryCharge -
+                                                  addOns),
                                       style: robotoRegular,
                                       textDirection: TextDirection.ltr),
                                 ]),

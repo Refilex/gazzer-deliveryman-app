@@ -1,8 +1,7 @@
+import 'package:flutter/material.dart';
 import 'package:gazzer_delivery/feature/order/controllers/order_controller.dart';
-import 'package:gazzer_delivery/feature/order/widgets/camera_button_sheet_widget.dart';
 import 'package:gazzer_delivery/util/dimensions.dart';
 import 'package:gazzer_delivery/util/styles.dart';
-import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class DialogImageWidget extends StatelessWidget {
@@ -51,7 +50,9 @@ class DialogImageWidget extends StatelessWidget {
             GetBuilder<OrderController>(builder: (orderController) {
               return InkWell(
                 onTap: () {
-                  Get.bottomSheet(const CameraButtonSheetWidget());
+                  // Get.bottomSheet(const CameraButtonSheetWidget());
+                  Get.find<OrderController>()
+                      .pickPrescriptionImage(isRemove: false, isCamera: true);
                 },
                 child: Container(
                   height: 100,
