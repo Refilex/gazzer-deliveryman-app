@@ -1,19 +1,16 @@
+import 'package:flutter/material.dart';
+import 'package:gazzer_delivery/common/widgets/confirmation_dialog_widget.dart';
+import 'package:gazzer_delivery/common/widgets/custom_button_widget.dart';
+import 'package:gazzer_delivery/common/widgets/custom_snackbar_widget.dart';
 import 'package:gazzer_delivery/feature/auth/controllers/address_controller.dart';
 import 'package:gazzer_delivery/feature/order/controllers/order_controller.dart';
-import 'package:gazzer_delivery/feature/order/screens/order_details_screen.dart';
-import 'package:gazzer_delivery/feature/splash/controllers/splash_controller.dart';
 import 'package:gazzer_delivery/feature/order/domain/models/order_model.dart';
-import 'package:gazzer_delivery/feature/profile/controllers/profile_controller.dart';
+import 'package:gazzer_delivery/feature/order/screens/order_details_screen.dart';
 import 'package:gazzer_delivery/helper/date_converter_helper.dart';
-import 'package:gazzer_delivery/helper/price_converter_helper.dart';
 import 'package:gazzer_delivery/helper/route_helper.dart';
 import 'package:gazzer_delivery/util/dimensions.dart';
 import 'package:gazzer_delivery/util/images.dart';
 import 'package:gazzer_delivery/util/styles.dart';
-import 'package:gazzer_delivery/common/widgets/confirmation_dialog_widget.dart';
-import 'package:gazzer_delivery/common/widgets/custom_button_widget.dart';
-import 'package:gazzer_delivery/common/widgets/custom_snackbar_widget.dart';
-import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 
@@ -139,32 +136,32 @@ class LocationCardWidget extends StatelessWidget {
           padding: const EdgeInsets.all(Dimensions.paddingSizeSmall),
           margin: const EdgeInsets.all(0.2),
           child: Row(crossAxisAlignment: CrossAxisAlignment.center, children: [
-            Expanded(
-              child: Wrap(
-                  alignment: WrapAlignment.center,
-                  runAlignment: WrapAlignment.center,
-                  children: [
-                    (Get.find<SplashController>().configModel!.showDmEarning! &&
-                            Get.find<ProfileController>()
-                                    .profileModel!
-                                    .earnings ==
-                                1)
-                        ? Text(
-                            PriceConverter.convertPrice(
-                                orderModel.originalDeliveryCharge! +
-                                    orderModel.dmTips!),
-                            style: robotoMedium.copyWith(
-                                fontSize: Dimensions.fontSizeLarge),
-                          )
-                        : const SizedBox(),
-                    const SizedBox(width: Dimensions.paddingSizeExtraSmall),
-                    Text(
-                      '(${orderModel.paymentMethod == 'cash_on_delivery' ? 'cod'.tr : 'digitally_paid'.tr})',
-                      style: robotoRegular.copyWith(
-                          fontSize: Dimensions.fontSizeSmall),
-                    ),
-                  ]),
-            ),
+            // Expanded(
+            //   child: Wrap(
+            //       alignment: WrapAlignment.center,
+            //       runAlignment: WrapAlignment.center,
+            //       children: [
+            //         (Get.find<SplashController>().configModel!.showDmEarning! &&
+            //                 Get.find<ProfileController>()
+            //                         .profileModel!
+            //                         .earnings ==
+            //                     1)
+            //             ? Text(
+            //                 PriceConverter.convertPrice(
+            //                     orderModel.originalDeliveryCharge! +
+            //                         orderModel.dmTips!),
+            //                 style: robotoMedium.copyWith(
+            //                     fontSize: Dimensions.fontSizeLarge),
+            //               )
+            //             : const SizedBox(),
+            //         const SizedBox(width: Dimensions.paddingSizeExtraSmall),
+            //         Text(
+            //           '(${orderModel.paymentMethod == 'cash_on_delivery' ? 'cod'.tr : 'digitally_paid'.tr})',
+            //           style: robotoRegular.copyWith(
+            //               fontSize: Dimensions.fontSizeSmall),
+            //         ),
+            //       ]),
+            // ),
             Expanded(
               child: Row(children: [
                 Expanded(
