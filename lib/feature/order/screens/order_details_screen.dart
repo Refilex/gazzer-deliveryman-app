@@ -594,13 +594,14 @@ class _OrderDetailsScreenState extends State<OrderDetailsScreen> {
                                     MainAxisAlignment.spaceBetween,
                                 children: [
                                   Text('item_price'.tr, style: robotoRegular),
+                                  // order.couponCode == "FreeDel20" || order.couponCode == "Gazzer free" || order.couponCode == "Hussein Free"
+                                  //     ? order.orderAmount! - addOns
+                                  //     : order.orderAmount! -
+                                  //     deliveryCharge -
+                                  //     addOns
                                   Text(
                                       PriceConverter.convertPrice(
-                                          order.couponCode == "FreeDel20"
-                                              ? order.orderAmount! - addOns
-                                              : order.orderAmount! -
-                                                  deliveryCharge -
-                                                  addOns),
+                                          itemsPrice / 2),
                                       style: robotoRegular,
                                       textDirection: TextDirection.ltr),
                                 ]),
@@ -611,7 +612,7 @@ class _OrderDetailsScreenState extends State<OrderDetailsScreen> {
                                 children: [
                                   Text('addons'.tr, style: robotoRegular),
                                   Text(
-                                    '(+) ${PriceConverter.convertPrice(addOns)}',
+                                    '(+) ${PriceConverter.convertPrice(addOns / 2)}',
                                     style: robotoRegular,
                                     textDirection: TextDirection.ltr,
                                   ),
@@ -630,7 +631,8 @@ class _OrderDetailsScreenState extends State<OrderDetailsScreen> {
                                       style: robotoMedium),
                                   Text(
                                       PriceConverter.convertPrice(
-                                          order.couponCode == "FreeDel20"
+                                          order.couponDiscountAmount == 0 &&
+                                                  order.couponCode != null
                                               ? order.orderAmount!
                                               : order.orderAmount! -
                                                   deliveryCharge),
@@ -745,7 +747,7 @@ class _OrderDetailsScreenState extends State<OrderDetailsScreen> {
                                 children: [
                                   Text('delivery_fee'.tr, style: robotoRegular),
                                   Text(
-                                      '(+) ${PriceConverter.convertPrice(order.couponCode == "FreeDel20" ? 0 : deliveryCharge)}',
+                                      '(+) ${PriceConverter.convertPrice(order.couponDiscountAmount == 0 && order.couponCode != null ? 0 : deliveryCharge)}',
                                       style: robotoRegular,
                                       textDirection: TextDirection.ltr),
                                 ]),
