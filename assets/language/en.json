@@ -28,7 +28,7 @@
   "reset_password": "Reset Password",
   "online": "Online",
   "offline": "Offline",
-  "active_order": "Active Order",
+  "active_order": "Active Orders",
   "order_id": "Order ID",
   "orders": "Orders",
   "view_all": "View All",
@@ -139,7 +139,7 @@
   "you_denied": "You denied location permission or allowed for foreground use only. You need to allow permission for all time to use this service.",
   "you_denied_forever": "You denied location permission for forever. You need to allow permission to use this service.",
   "cod": "COD",
-  "digitally_paid": "Digitally Paid",
+  "digitally_paid": "Paid with visa",
   "go": "Go",
   "restaurant_location": "Restaurant Location",
   "customer_location": "Customer Location",
@@ -371,5 +371,6 @@
   "payment_method_deleted": "Payment method deleted",
   "extra_packaging": "Extra Packaging",
   "referral_discount": "Referral Discount",
-  "refund_request_canceled": "Refund request cancelled"
+  "refund_request_canceled": "Refund request cancelled",
+  "free": "Free"
 }

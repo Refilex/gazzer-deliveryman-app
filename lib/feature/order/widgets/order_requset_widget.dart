@@ -10,6 +10,7 @@ import 'package:gazzer_delivery/feature/order/screens/order_details_screen.dart'
 import 'package:gazzer_delivery/feature/order/screens/order_location_screen.dart';
 import 'package:gazzer_delivery/feature/splash/controllers/splash_controller.dart';
 import 'package:gazzer_delivery/helper/date_converter_helper.dart';
+import 'package:gazzer_delivery/helper/price_converter_helper.dart';
 import 'package:gazzer_delivery/helper/route_helper.dart';
 import 'package:gazzer_delivery/util/dimensions.dart';
 import 'package:gazzer_delivery/util/images.dart';
@@ -98,42 +99,33 @@ class OrderRequestWidget extends StatelessWidget {
                         color: Theme.of(context).primaryColor),
                   ),
                   const SizedBox(height: Dimensions.paddingSizeSmall),
-                  // Container(
-                  //   padding: const EdgeInsets.symmetric(
-                  //       horizontal: Dimensions.paddingSizeSmall,
-                  //       vertical: Dimensions.paddingSizeExtraSmall),
-                  //   decoration: BoxDecoration(
-                  //     color: Theme.of(context).primaryColor.withOpacity(0.1),
-                  //     borderRadius:
-                  //         BorderRadius.circular(Dimensions.radiusDefault),
-                  //     border: Border.all(
-                  //         color: Theme.of(context).primaryColor, width: 0.5),
-                  //   ),
-                  //   child: Column(children: [
-                  //     (Get.find<SplashController>()
-                  //                 .configModel!
-                  //                 .showDmEarning! &&
-                  //             Get.find<ProfileController>()
-                  //                     .profileModel!
-                  //                     .earnings ==
-                  //                 1)
-                  //         ? Text(
-                  //             PriceConverter.convertPrice(
-                  //                 orderModel.originalDeliveryCharge! +
-                  //                     orderModel.dmTips!),
-                  //             style: robotoMedium.copyWith(
-                  //                 fontSize: Dimensions.fontSizeExtraSmall),
-                  //           )
-                  //         : const SizedBox(),
-                  //     Text(
-                  //       orderModel.paymentMethod == 'cash_on_delivery'
-                  //           ? 'cod'.tr
-                  //           : 'digitally_paid'.tr,
-                  //       style: robotoRegular.copyWith(
-                  //           fontSize: Dimensions.fontSizeExtraSmall),
-                  //     ),
-                  //   ]),
-                  // ),
+                  Container(
+                    padding: const EdgeInsets.symmetric(
+                        horizontal: Dimensions.paddingSizeSmall,
+                        vertical: Dimensions.paddingSizeExtraSmall),
+                    decoration: BoxDecoration(
+                      color: Theme.of(context).primaryColor.withOpacity(0.1),
+                      borderRadius:
+                          BorderRadius.circular(Dimensions.radiusDefault),
+                      border: Border.all(
+                          color: Theme.of(context).primaryColor, width: 0.5),
+                    ),
+                    child: Column(children: [
+                      Text(
+                        PriceConverter.convertPrice(
+                            orderModel.deliveryCharge! + orderModel.dmTips!),
+                        style: robotoMedium.copyWith(
+                            fontSize: Dimensions.fontSizeExtraSmall),
+                      ),
+                      Text(
+                        orderModel.paymentMethod == 'cash_on_delivery'
+                            ? 'cod'.tr
+                            : 'digitally_paid'.tr,
+                        style: robotoRegular.copyWith(
+                            fontSize: Dimensions.fontSizeExtraSmall),
+                      ),
+                    ]),
+                  ),
                 ]),
               ]),
               Align(

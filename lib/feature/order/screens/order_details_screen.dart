@@ -392,7 +392,7 @@ class _OrderDetailsScreenState extends State<OrderDetailsScreen> {
                               padding: const EdgeInsets.symmetric(
                                   vertical: Dimensions.paddingSizeExtraSmall),
                               child: Row(children: [
-                                Text('${'item'.tr}:', style: robotoRegular),
+                                Text('${'items'.tr}:', style: robotoRegular),
                                 const SizedBox(
                                     width: Dimensions.paddingSizeExtraSmall),
                                 Text(
@@ -634,8 +634,7 @@ class _OrderDetailsScreenState extends State<OrderDetailsScreen> {
                                           order.couponDiscountAmount == 0 &&
                                                   order.couponCode != null
                                               ? order.orderAmount!
-                                              : order.orderAmount! -
-                                                  deliveryCharge),
+                                              : subTotal / 2),
                                       style: robotoMedium,
                                       textDirection: TextDirection.ltr),
                                 ]),
@@ -720,36 +719,43 @@ class _OrderDetailsScreenState extends State<OrderDetailsScreen> {
                                       ])
                                 : const SizedBox(),
                             SizedBox(height: extraPackagingAmount > 0 ? 10 : 0),
-                            (order.additionalCharge != null &&
-                                    order.additionalCharge! > 0)
-                                ? Row(
-                                    mainAxisAlignment:
-                                        MainAxisAlignment.spaceBetween,
-                                    children: [
-                                        Text(
-                                            Get.find<SplashController>()
-                                                .configModel!
-                                                .additionalChargeName!,
-                                            style: robotoRegular),
-                                        Text(
-                                            '(+) ${PriceConverter.convertPrice(order.additionalCharge)}',
-                                            style: robotoRegular,
-                                            textDirection: TextDirection.ltr),
-                                      ])
-                                : const SizedBox(),
-                            (order.additionalCharge != null &&
-                                    order.additionalCharge! > 0)
-                                ? const SizedBox(height: 10)
-                                : const SizedBox(),
+                            // (order.additionalCharge != null &&
+                            //         order.additionalCharge! > 0)
+                            //     ? Row(
+                            //         mainAxisAlignment:
+                            //             MainAxisAlignment.spaceBetween,
+                            //         children: [
+                            //             Text(
+                            //                 Get.find<SplashController>()
+                            //                     .configModel!
+                            //                     .additionalChargeName!,
+                            //                 style: robotoRegular),
+                            //             Text(
+                            //                 '(+) ${PriceConverter.convertPrice(order.additionalCharge)}',
+                            //                 style: robotoRegular,
+                            //                 textDirection: TextDirection.ltr),
+                            //           ])
+                            //     : const SizedBox(),
+                            // (order.additionalCharge != null &&
+                            //         order.additionalCharge! > 0)
+                            //     ? const SizedBox(height: 10)
+                            //     : const SizedBox(),
                             Row(
                                 mainAxisAlignment:
                                     MainAxisAlignment.spaceBetween,
                                 children: [
                                   Text('delivery_fee'.tr, style: robotoRegular),
-                                  Text(
-                                      '(+) ${PriceConverter.convertPrice(order.couponDiscountAmount == 0 && order.couponCode != null ? 0 : deliveryCharge)}',
-                                      style: robotoRegular,
-                                      textDirection: TextDirection.ltr),
+                                  order.couponDiscountAmount == 0 &&
+                                          order.couponCode != null
+                                      ? Text('free'.tr,
+                                          style: robotoRegular.copyWith(
+                                              color: Theme.of(context)
+                                                  .primaryColor))
+                                      : Text(
+                                          '(+) ${PriceConverter.convertPrice(deliveryCharge)}',
+                                          style: robotoRegular,
+                                          textDirection: TextDirection.ltr,
+                                        ),
                                 ]),
                             Padding(
                               padding: const EdgeInsets.symmetric(
