@@ -34,10 +34,10 @@ Future<void> main() async {
   if (GetPlatform.isAndroid) {
     await Firebase.initializeApp(
       options: const FirebaseOptions(
-        apiKey: 'AIzaSyBScz65YN8J9YoKdtKPl4ecCB3Vkc7iNL8',
-        appId: '1:1049699819506:android:490a8d64ef54403889956b',
-        messagingSenderId: '1049699819506',
-        projectId: 'stackfood-bd3ee',
+        apiKey: 'AIzaSyCfxGdnL_KhgbNDY7mFQh-tHHBqIaxisYw',
+        appId: '1:671839887516:android:943c43dfaadfac33798d59',
+        messagingSenderId: '671839887516',
+        projectId: 'gazzer-app',
       ),
     );
   } else {
