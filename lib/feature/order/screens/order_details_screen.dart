@@ -3,39 +3,39 @@ import 'dart:io';
 
 import 'package:dotted_border/dotted_border.dart';
 import 'package:flutter/material.dart';
+import 'package:gazzer_delivery/common/widgets/confirmation_dialog_widget.dart';
+import 'package:gazzer_delivery/common/widgets/custom_app_bar_widget.dart';
+import 'package:gazzer_delivery/common/widgets/custom_button_widget.dart';
+import 'package:gazzer_delivery/common/widgets/custom_image_widget.dart';
+import 'package:gazzer_delivery/common/widgets/custom_snackbar_widget.dart';
+import 'package:gazzer_delivery/feature/chat/domain/models/conversation_model.dart';
+import 'package:gazzer_delivery/feature/language/controllers/localization_controller.dart';
+import 'package:gazzer_delivery/feature/notification/controllers/notification_controller.dart';
+import 'package:gazzer_delivery/feature/notification/domain/models/notification_body_model.dart';
+import 'package:gazzer_delivery/feature/order/controllers/order_controller.dart';
+import 'package:gazzer_delivery/feature/order/domain/models/order_details_model.dart';
+import 'package:gazzer_delivery/feature/order/domain/models/order_model.dart';
+import 'package:gazzer_delivery/feature/order/widgets/camera_button_sheet_widget.dart';
+import 'package:gazzer_delivery/feature/order/widgets/cancellation_dialogue_widget.dart';
+import 'package:gazzer_delivery/feature/order/widgets/collect_money_delivery_sheet_widget.dart';
+import 'package:gazzer_delivery/feature/order/widgets/dialogue_image_widget.dart';
+import 'package:gazzer_delivery/feature/order/widgets/info_card_widget.dart';
+import 'package:gazzer_delivery/feature/order/widgets/info_card_widget_restaurant.dart';
+import 'package:gazzer_delivery/feature/order/widgets/order_product_widget.dart';
+import 'package:gazzer_delivery/feature/order/widgets/slider_button_widget.dart';
+import 'package:gazzer_delivery/feature/order/widgets/verify_delivery_sheet_widget.dart';
+import 'package:gazzer_delivery/feature/profile/controllers/profile_controller.dart';
+import 'package:gazzer_delivery/feature/splash/controllers/splash_controller.dart';
+import 'package:gazzer_delivery/helper/date_converter_helper.dart';
+import 'package:gazzer_delivery/helper/price_converter_helper.dart';
+import 'package:gazzer_delivery/helper/responsive_helper.dart';
+import 'package:gazzer_delivery/helper/route_helper.dart';
+import 'package:gazzer_delivery/util/dimensions.dart';
+import 'package:gazzer_delivery/util/images.dart';
+import 'package:gazzer_delivery/util/styles.dart';
 import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:photo_view/photo_view.dart';
-import 'package:stackfood_multivendor_driver/common/widgets/confirmation_dialog_widget.dart';
-import 'package:stackfood_multivendor_driver/common/widgets/custom_app_bar_widget.dart';
-import 'package:stackfood_multivendor_driver/common/widgets/custom_button_widget.dart';
-import 'package:stackfood_multivendor_driver/common/widgets/custom_image_widget.dart';
-import 'package:stackfood_multivendor_driver/common/widgets/custom_snackbar_widget.dart';
-import 'package:stackfood_multivendor_driver/feature/chat/domain/models/conversation_model.dart';
-import 'package:stackfood_multivendor_driver/feature/language/controllers/localization_controller.dart';
-import 'package:stackfood_multivendor_driver/feature/notification/controllers/notification_controller.dart';
-import 'package:stackfood_multivendor_driver/feature/notification/domain/models/notification_body_model.dart';
-import 'package:stackfood_multivendor_driver/feature/order/controllers/order_controller.dart';
-import 'package:stackfood_multivendor_driver/feature/order/domain/models/order_details_model.dart';
-import 'package:stackfood_multivendor_driver/feature/order/domain/models/order_model.dart';
-import 'package:stackfood_multivendor_driver/feature/order/widgets/camera_button_sheet_widget.dart';
-import 'package:stackfood_multivendor_driver/feature/order/widgets/cancellation_dialogue_widget.dart';
-import 'package:stackfood_multivendor_driver/feature/order/widgets/collect_money_delivery_sheet_widget.dart';
-import 'package:stackfood_multivendor_driver/feature/order/widgets/dialogue_image_widget.dart';
-import 'package:stackfood_multivendor_driver/feature/order/widgets/info_card_widget.dart';
-import 'package:stackfood_multivendor_driver/feature/order/widgets/info_card_widget_restaurant.dart';
-import 'package:stackfood_multivendor_driver/feature/order/widgets/order_product_widget.dart';
-import 'package:stackfood_multivendor_driver/feature/order/widgets/slider_button_widget.dart';
-import 'package:stackfood_multivendor_driver/feature/order/widgets/verify_delivery_sheet_widget.dart';
-import 'package:stackfood_multivendor_driver/feature/profile/controllers/profile_controller.dart';
-import 'package:stackfood_multivendor_driver/feature/splash/controllers/splash_controller.dart';
-import 'package:stackfood_multivendor_driver/helper/date_converter_helper.dart';
-import 'package:stackfood_multivendor_driver/helper/price_converter_helper.dart';
-import 'package:stackfood_multivendor_driver/helper/responsive_helper.dart';
-import 'package:stackfood_multivendor_driver/helper/route_helper.dart';
-import 'package:stackfood_multivendor_driver/util/dimensions.dart';
-import 'package:stackfood_multivendor_driver/util/images.dart';
-import 'package:stackfood_multivendor_driver/util/styles.dart';
 
 class OrderDetailsScreen extends StatefulWidget {
   final int? orderId;
@@ -167,7 +167,10 @@ class _OrderDetailsScreenState extends State<OrderDetailsScreen> {
             if (restaurantCount == 1) {
               deliveryCharge = deliveryCharge! + 15;
             } else {
-              deliveryCharge = deliveryCharge! + 5;
+              deliveryCharge = deliveryCharge! +
+                  Get.find<SplashController>()
+                      .configModel!
+                      .deliveryFeeMultiVendor!;
             }
           }
           if (order != null && orderController.orderDetailsModel != null) {
@@ -239,7 +242,8 @@ class _OrderDetailsScreenState extends State<OrderDetailsScreen> {
                                   controllerOrderModel.orderStatus !=
                                       'refunded' &&
                                   controllerOrderModel.orderStatus !=
-                                      'refund_request_canceled')
+                                      'refund_request_canceled' &&
+                                  order.totalDeliveryTime != null)
                               ? Column(children: [
                                   ClipRRect(
                                       borderRadius: BorderRadius.circular(10),
@@ -256,37 +260,12 @@ class _OrderDetailsScreenState extends State<OrderDetailsScreen> {
                                   const SizedBox(
                                       height: Dimensions.paddingSizeExtraSmall),
                                   Center(
-                                    child: Row(
-                                        mainAxisSize: MainAxisSize.min,
-                                        children: [
-                                          Text(
-                                            DateConverter.differenceInMinute(
-                                                        controllerOrderModel
-                                                            .restaurantDeliveryTime,
-                                                        controllerOrderModel
-                                                            .createdAt,
-                                                        controllerOrderModel
-                                                            .processingTime,
-                                                        controllerOrderModel
-                                                            .scheduleAt) <
-                                                    5
-                                                ? '1 - 5'
-                                                : '${DateConverter.differenceInMinute(controllerOrderModel.restaurantDeliveryTime, controllerOrderModel.createdAt, controllerOrderModel.processingTime, controllerOrderModel.scheduleAt) - 5} '
-                                                    '- ${DateConverter.differenceInMinute(controllerOrderModel.restaurantDeliveryTime, controllerOrderModel.createdAt, controllerOrderModel.processingTime, controllerOrderModel.scheduleAt)}',
-                                            style: robotoBold.copyWith(
-                                                fontSize: Dimensions
-                                                    .fontSizeExtraLarge),
-                                          ),
-                                          const SizedBox(
-                                              width: Dimensions
-                                                  .paddingSizeExtraSmall),
-                                          Text('min'.tr,
-                                              style: robotoMedium.copyWith(
-                                                  fontSize:
-                                                      Dimensions.fontSizeLarge,
-                                                  color: Theme.of(context)
-                                                      .primaryColor)),
-                                        ]),
+                                    child: Text(
+                                      order.totalDeliveryTime!,
+                                      style: robotoBold.copyWith(
+                                          fontSize:
+                                              Dimensions.fontSizeOverLarge),
+                                    ),
                                   ),
                                   const SizedBox(
                                       height: Dimensions.paddingSizeExtraLarge),
@@ -325,22 +304,22 @@ class _OrderDetailsScreenState extends State<OrderDetailsScreen> {
                         ),
                       ]),
                       const SizedBox(height: Dimensions.paddingSizeLarge),
-
                       ListView.builder(
                         shrinkWrap: true,
                         physics: const NeverScrollableScrollPhysics(),
                         itemCount:
-                        orderController.orderModel!.restaurants!.length,
+                            orderController.orderModel!.restaurants!.length,
                         itemBuilder: (context, index) {
-                          return   InfoCardWidgetRestaurant(
-                            showButton:
-                            (controllerOrderModel.orderStatus != 'delivered' &&
+                          return InfoCardWidgetRestaurant(
+                            showButton: (controllerOrderModel.orderStatus !=
+                                    'delivered' &&
                                 controllerOrderModel.orderStatus != 'failed' &&
                                 controllerOrderModel.orderStatus != 'canceled'),
-                            restaurant: orderController.orderModel!.restaurants![index],
+                            restaurant:
+                                orderController.orderModel!.restaurants![index],
                             messageOnTap: () async {
                               if (controllerOrderModel.restaurantModel !=
-                                  'commission' &&
+                                      'commission' &&
                                   controllerOrderModel.chatPermission == 0) {
                                 showCustomSnackBar(
                                     'restaurant_have_no_chat_permission'.tr);
@@ -363,9 +342,6 @@ class _OrderDetailsScreenState extends State<OrderDetailsScreen> {
                           );
                         },
                       ),
-
-
-
                       const SizedBox(height: Dimensions.paddingSizeLarge),
                       InfoCardWidget(
                         title: 'customer_contact_details'.tr,
@@ -416,7 +392,7 @@ class _OrderDetailsScreenState extends State<OrderDetailsScreen> {
                               padding: const EdgeInsets.symmetric(
                                   vertical: Dimensions.paddingSizeExtraSmall),
                               child: Row(children: [
-                                Text('${'item'.tr}:', style: robotoRegular),
+                                Text('${'items'.tr}:', style: robotoRegular),
                                 const SizedBox(
                                     width: Dimensions.paddingSizeExtraSmall),
                                 Text(
@@ -618,9 +594,14 @@ class _OrderDetailsScreenState extends State<OrderDetailsScreen> {
                                     MainAxisAlignment.spaceBetween,
                                 children: [
                                   Text('item_price'.tr, style: robotoRegular),
+                                  // order.couponCode == "FreeDel20" || order.couponCode == "Gazzer free" || order.couponCode == "Hussein Free"
+                                  //     ? order.orderAmount! - addOns
+                                  //     : order.orderAmount! -
+                                  //     deliveryCharge -
+                                  //     addOns
                                   Text(
                                       PriceConverter.convertPrice(
-                                          order.orderAmount! - deliveryCharge),
+                                          itemsPrice / 2),
                                       style: robotoRegular,
                                       textDirection: TextDirection.ltr),
                                 ]),
@@ -631,7 +612,7 @@ class _OrderDetailsScreenState extends State<OrderDetailsScreen> {
                                 children: [
                                   Text('addons'.tr, style: robotoRegular),
                                   Text(
-                                    '(+) ${PriceConverter.convertPrice(addOns)}',
+                                    '(+) ${PriceConverter.convertPrice(addOns / 2)}',
                                     style: robotoRegular,
                                     textDirection: TextDirection.ltr,
                                   ),
@@ -650,7 +631,10 @@ class _OrderDetailsScreenState extends State<OrderDetailsScreen> {
                                       style: robotoMedium),
                                   Text(
                                       PriceConverter.convertPrice(
-                                          order.orderAmount! - deliveryCharge),
+                                          order.couponDiscountAmount == 0 &&
+                                                  order.couponCode != null
+                                              ? order.orderAmount!
+                                              : subTotal / 2),
                                       style: robotoMedium,
                                       textDirection: TextDirection.ltr),
                                 ]),
@@ -735,36 +719,43 @@ class _OrderDetailsScreenState extends State<OrderDetailsScreen> {
                                       ])
                                 : const SizedBox(),
                             SizedBox(height: extraPackagingAmount > 0 ? 10 : 0),
-                            (order.additionalCharge != null &&
-                                    order.additionalCharge! > 0)
-                                ? Row(
-                                    mainAxisAlignment:
-                                        MainAxisAlignment.spaceBetween,
-                                    children: [
-                                        Text(
-                                            Get.find<SplashController>()
-                                                .configModel!
-                                                .additionalChargeName!,
-                                            style: robotoRegular),
-                                        Text(
-                                            '(+) ${PriceConverter.convertPrice(order.additionalCharge)}',
-                                            style: robotoRegular,
-                                            textDirection: TextDirection.ltr),
-                                      ])
-                                : const SizedBox(),
-                            (order.additionalCharge != null &&
-                                    order.additionalCharge! > 0)
-                                ? const SizedBox(height: 10)
-                                : const SizedBox(),
+                            // (order.additionalCharge != null &&
+                            //         order.additionalCharge! > 0)
+                            //     ? Row(
+                            //         mainAxisAlignment:
+                            //             MainAxisAlignment.spaceBetween,
+                            //         children: [
+                            //             Text(
+                            //                 Get.find<SplashController>()
+                            //                     .configModel!
+                            //                     .additionalChargeName!,
+                            //                 style: robotoRegular),
+                            //             Text(
+                            //                 '(+) ${PriceConverter.convertPrice(order.additionalCharge)}',
+                            //                 style: robotoRegular,
+                            //                 textDirection: TextDirection.ltr),
+                            //           ])
+                            //     : const SizedBox(),
+                            // (order.additionalCharge != null &&
+                            //         order.additionalCharge! > 0)
+                            //     ? const SizedBox(height: 10)
+                            //     : const SizedBox(),
                             Row(
                                 mainAxisAlignment:
                                     MainAxisAlignment.spaceBetween,
                                 children: [
                                   Text('delivery_fee'.tr, style: robotoRegular),
-                                  Text(
-                                      '(+) ${PriceConverter.convertPrice(deliveryCharge)}',
-                                      style: robotoRegular,
-                                      textDirection: TextDirection.ltr),
+                                  order.couponDiscountAmount == 0 &&
+                                          order.couponCode != null
+                                      ? Text('free'.tr,
+                                          style: robotoRegular.copyWith(
+                                              color: Theme.of(context)
+                                                  .primaryColor))
+                                      : Text(
+                                          '(+) ${PriceConverter.convertPrice(deliveryCharge)}',
+                                          style: robotoRegular,
+                                          textDirection: TextDirection.ltr,
+                                        ),
                                 ]),
                             Padding(
                               padding: const EdgeInsets.symmetric(

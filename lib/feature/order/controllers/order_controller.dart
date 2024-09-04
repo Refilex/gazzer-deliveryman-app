@@ -2,16 +2,16 @@ import 'package:geocoding/geocoding.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
-import 'package:stackfood_multivendor_driver/api/api_client.dart';
-import 'package:stackfood_multivendor_driver/common/models/response_model.dart';
-import 'package:stackfood_multivendor_driver/common/widgets/custom_snackbar_widget.dart';
-import 'package:stackfood_multivendor_driver/feature/order/domain/models/ignore_model.dart';
-import 'package:stackfood_multivendor_driver/feature/order/domain/models/order_cancellation_body_model.dart';
-import 'package:stackfood_multivendor_driver/feature/order/domain/models/order_details_model.dart';
-import 'package:stackfood_multivendor_driver/feature/order/domain/models/order_model.dart';
-import 'package:stackfood_multivendor_driver/feature/order/domain/models/update_status_body.dart';
-import 'package:stackfood_multivendor_driver/feature/order/domain/services/order_service_interface.dart';
-import 'package:stackfood_multivendor_driver/feature/splash/controllers/splash_controller.dart';
+import 'package:gazzer_delivery/api/api_client.dart';
+import 'package:gazzer_delivery/common/models/response_model.dart';
+import 'package:gazzer_delivery/common/widgets/custom_snackbar_widget.dart';
+import 'package:gazzer_delivery/feature/order/domain/models/ignore_model.dart';
+import 'package:gazzer_delivery/feature/order/domain/models/order_cancellation_body_model.dart';
+import 'package:gazzer_delivery/feature/order/domain/models/order_details_model.dart';
+import 'package:gazzer_delivery/feature/order/domain/models/order_model.dart';
+import 'package:gazzer_delivery/feature/order/domain/models/update_status_body.dart';
+import 'package:gazzer_delivery/feature/order/domain/services/order_service_interface.dart';
+import 'package:gazzer_delivery/feature/splash/controllers/splash_controller.dart';
 
 class OrderController extends GetxController implements GetxService {
   final OrderServiceInterface orderServiceInterface;

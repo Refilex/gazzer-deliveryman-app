@@ -1,21 +1,20 @@
-import 'package:stackfood_multivendor_driver/common/widgets/custom_image_widget.dart';
-import 'package:stackfood_multivendor_driver/feature/auth/controllers/address_controller.dart';
-import 'package:stackfood_multivendor_driver/feature/order/controllers/order_controller.dart';
-import 'package:stackfood_multivendor_driver/feature/order/screens/order_details_screen.dart';
-import 'package:stackfood_multivendor_driver/feature/order/screens/order_location_screen.dart';
-import 'package:stackfood_multivendor_driver/feature/splash/controllers/splash_controller.dart';
-import 'package:stackfood_multivendor_driver/feature/order/domain/models/order_model.dart';
-import 'package:stackfood_multivendor_driver/feature/profile/controllers/profile_controller.dart';
-import 'package:stackfood_multivendor_driver/helper/date_converter_helper.dart';
-import 'package:stackfood_multivendor_driver/helper/price_converter_helper.dart';
-import 'package:stackfood_multivendor_driver/helper/route_helper.dart';
-import 'package:stackfood_multivendor_driver/util/dimensions.dart';
-import 'package:stackfood_multivendor_driver/util/images.dart';
-import 'package:stackfood_multivendor_driver/util/styles.dart';
-import 'package:stackfood_multivendor_driver/common/widgets/confirmation_dialog_widget.dart';
-import 'package:stackfood_multivendor_driver/common/widgets/custom_button_widget.dart';
-import 'package:stackfood_multivendor_driver/common/widgets/custom_snackbar_widget.dart';
 import 'package:flutter/material.dart';
+import 'package:gazzer_delivery/common/widgets/confirmation_dialog_widget.dart';
+import 'package:gazzer_delivery/common/widgets/custom_button_widget.dart';
+import 'package:gazzer_delivery/common/widgets/custom_image_widget.dart';
+import 'package:gazzer_delivery/common/widgets/custom_snackbar_widget.dart';
+import 'package:gazzer_delivery/feature/auth/controllers/address_controller.dart';
+import 'package:gazzer_delivery/feature/order/controllers/order_controller.dart';
+import 'package:gazzer_delivery/feature/order/domain/models/order_model.dart';
+import 'package:gazzer_delivery/feature/order/screens/order_details_screen.dart';
+import 'package:gazzer_delivery/feature/order/screens/order_location_screen.dart';
+import 'package:gazzer_delivery/feature/splash/controllers/splash_controller.dart';
+import 'package:gazzer_delivery/helper/date_converter_helper.dart';
+import 'package:gazzer_delivery/helper/price_converter_helper.dart';
+import 'package:gazzer_delivery/helper/route_helper.dart';
+import 'package:gazzer_delivery/util/dimensions.dart';
+import 'package:gazzer_delivery/util/images.dart';
+import 'package:gazzer_delivery/util/styles.dart';
 import 'package:get/get.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 
@@ -112,21 +111,12 @@ class OrderRequestWidget extends StatelessWidget {
                           color: Theme.of(context).primaryColor, width: 0.5),
                     ),
                     child: Column(children: [
-                      (Get.find<SplashController>()
-                                  .configModel!
-                                  .showDmEarning! &&
-                              Get.find<ProfileController>()
-                                      .profileModel!
-                                      .earnings ==
-                                  1)
-                          ? Text(
-                              PriceConverter.convertPrice(
-                                  orderModel.originalDeliveryCharge! +
-                                      orderModel.dmTips!),
-                              style: robotoMedium.copyWith(
-                                  fontSize: Dimensions.fontSizeExtraSmall),
-                            )
-                          : const SizedBox(),
+                      Text(
+                        PriceConverter.convertPrice(
+                            orderModel.deliveryCharge! + orderModel.dmTips!),
+                        style: robotoMedium.copyWith(
+                            fontSize: Dimensions.fontSizeExtraSmall),
+                      ),
                       Text(
                         orderModel.paymentMethod == 'cash_on_delivery'
                             ? 'cod'.tr
@@ -215,7 +205,7 @@ class OrderRequestWidget extends StatelessWidget {
             ]),
           ),
           Container(
-            height: 80,
+            height: 100,
             decoration: BoxDecoration(
                 color: Theme.of(context).disabledColor.withOpacity(0.05),
                 borderRadius: const BorderRadius.vertical(

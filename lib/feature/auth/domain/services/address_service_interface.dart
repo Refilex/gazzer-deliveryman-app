@@ -1,6 +1,6 @@
 import 'package:get/get_connect/http/src/response/response.dart';
-import 'package:stackfood_multivendor_driver/feature/auth/domain/models/zone_model.dart';
-import 'package:stackfood_multivendor_driver/feature/auth/domain/models/zone_response_model.dart';
+import 'package:gazzer_delivery/feature/auth/domain/models/zone_model.dart';
+import 'package:gazzer_delivery/feature/auth/domain/models/zone_response_model.dart';
 
 abstract class AddressServiceInterface {
   Future<dynamic> getZoneList();

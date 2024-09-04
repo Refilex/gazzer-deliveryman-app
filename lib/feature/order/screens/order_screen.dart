@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:stackfood_multivendor_driver/common/widgets/custom_app_bar_widget.dart';
-import 'package:stackfood_multivendor_driver/feature/order/controllers/order_controller.dart';
-import 'package:stackfood_multivendor_driver/feature/order/widgets/history_order_widget.dart';
-import 'package:stackfood_multivendor_driver/helper/custom_print_helper.dart';
-import 'package:stackfood_multivendor_driver/util/dimensions.dart';
-import 'package:stackfood_multivendor_driver/util/styles.dart';
+import 'package:gazzer_delivery/common/widgets/custom_app_bar_widget.dart';
+import 'package:gazzer_delivery/feature/order/controllers/order_controller.dart';
+import 'package:gazzer_delivery/feature/order/widgets/history_order_widget.dart';
+import 'package:gazzer_delivery/helper/custom_print_helper.dart';
+import 'package:gazzer_delivery/util/dimensions.dart';
+import 'package:gazzer_delivery/util/styles.dart';
 
 class OrderScreen extends StatefulWidget {
   const OrderScreen({super.key});
@@ -17,12 +17,12 @@ class OrderScreen extends StatefulWidget {
 class _OrderScreenState extends State<OrderScreen> {
   int _selectedIndex = 0;
   final List<String> excludedStatuses = [
-    'Delivered',
-    'Failed',
-    'Canceled',
-    'Refund requested',
-    'Refunded',
-    'Refund request canceled'
+    'delivered'.tr,
+    'failed'.tr,
+    'canceled'.tr,
+    'refund_requested'.tr,
+    'refunded'.tr,
+    'refund_request_canceled'.tr
   ];
 
   @override
@@ -74,27 +74,27 @@ class _OrderScreenState extends State<OrderScreen> {
 
                     return InkWell(
                       onTap: () async {
-                        if (excludedStatuses[index] == "Delivered") {
+                        if (excludedStatuses[index] == 'delivered'.tr) {
                           await orderController.getCompletedOrders(
                               1, "delivered");
                         }
-                        if (excludedStatuses[index] == "Failed") {
+                        if (excludedStatuses[index] == 'failed'.tr) {
                           await orderController.getCompletedOrders(1, "failed");
                         }
-                        if (excludedStatuses[index] == "Canceled") {
+                        if (excludedStatuses[index] == 'canceled'.tr) {
                           await orderController.getCompletedOrders(
                               1, "canceled");
                         }
-                        if (excludedStatuses[index] == "Refund requested") {
+                        if (excludedStatuses[index] == 'refund_requested'.tr) {
                           await orderController.getCompletedOrders(
                               1, "refund_requested");
                         }
-                        if (excludedStatuses[index] == "Refunded") {
+                        if (excludedStatuses[index] == 'refunded'.tr) {
                           await orderController.getCompletedOrders(
                               1, "refunded");
                         }
                         if (excludedStatuses[index] ==
-                            "Refund request canceled") {
+                            'refund_request_canceled'.tr) {
                           await orderController.getCompletedOrders(
                               1, "refund_request_canceled");
                         }

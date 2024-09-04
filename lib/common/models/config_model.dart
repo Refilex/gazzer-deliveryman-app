@@ -44,6 +44,7 @@ class ConfigModel {
   DeliverymanAdditionalJoinUsPageData? deliverymanAdditionalJoinUsPageData;
   String? disbursementType;
   double? minAmountToPayDm;
+  int? deliveryFeeMultiVendor;
 
   ConfigModel({
     this.businessName,
@@ -90,6 +91,7 @@ class ConfigModel {
     this.deliverymanAdditionalJoinUsPageData,
     this.disbursementType,
     this.minAmountToPayDm,
+    this.deliveryFeeMultiVendor,
   });
 
   ConfigModel.fromJson(Map<String, dynamic> json) {
@@ -154,6 +156,7 @@ class ConfigModel {
             : null;
     disbursementType = json['disbursement_type'];
     minAmountToPayDm = json['min_amount_to_pay_dm']?.toDouble();
+    deliveryFeeMultiVendor = json['delivery_fee_multi_vendor'];
   }
 
   Map<String, dynamic> toJson() {
@@ -212,6 +215,7 @@ class ConfigModel {
     }
     data['disbursement_type'] = disbursementType;
     data['min_amount_to_pay_dm'] = minAmountToPayDm;
+    data['delivery_fee_multi_vendor'] = deliveryFeeMultiVendor;
     return data;
   }
 }

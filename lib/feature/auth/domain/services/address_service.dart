@@ -1,10 +1,10 @@
 import 'dart:convert';
 
 import 'package:get/get.dart';
-import 'package:stackfood_multivendor_driver/feature/auth/domain/models/zone_model.dart';
-import 'package:stackfood_multivendor_driver/feature/auth/domain/models/zone_response_model.dart';
-import 'package:stackfood_multivendor_driver/feature/auth/domain/repositories/address_repository_interface.dart';
-import 'package:stackfood_multivendor_driver/feature/auth/domain/services/address_service_interface.dart';
+import 'package:gazzer_delivery/feature/auth/domain/models/zone_model.dart';
+import 'package:gazzer_delivery/feature/auth/domain/models/zone_response_model.dart';
+import 'package:gazzer_delivery/feature/auth/domain/repositories/address_repository_interface.dart';
+import 'package:gazzer_delivery/feature/auth/domain/services/address_service_interface.dart';
 
 class AddressService implements AddressServiceInterface {
   final AddressRepositoryInterface addressRepositoryInterface;

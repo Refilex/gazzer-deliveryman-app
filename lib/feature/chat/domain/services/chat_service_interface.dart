@@ -1,6 +1,6 @@
 import 'package:image_picker/image_picker.dart';
-import 'package:stackfood_multivendor_driver/api/api_client.dart';
-import 'package:stackfood_multivendor_driver/helper/user_type_helper.dart';
+import 'package:gazzer_delivery/api/api_client.dart';
+import 'package:gazzer_delivery/helper/user_type_helper.dart';
 
 abstract class ChatServiceInterface {
   Future<dynamic> getConversationList(int offset);
