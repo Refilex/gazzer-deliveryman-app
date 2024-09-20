@@ -1,4 +1,4 @@
-# stackfood_multivendor_driver
+# gazzer_delivery
 
 A new Flutter application.
 

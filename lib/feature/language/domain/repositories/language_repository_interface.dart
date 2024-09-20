@@ -1,4 +1,4 @@
-import 'package:stackfood_multivendor_driver/interface/repository_interface.dart';
+import 'package:gazzer_delivery/interface/repository_interface.dart';
 import 'package:flutter/material.dart';
 
 abstract class LanguageRepositoryInterface extends RepositoryInterface {

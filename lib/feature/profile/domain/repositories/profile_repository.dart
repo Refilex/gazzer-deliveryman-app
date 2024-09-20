@@ -1,14 +1,14 @@
-import 'package:stackfood_multivendor_driver/common/models/response_model.dart';
-import 'package:stackfood_multivendor_driver/api/api_client.dart';
-import 'package:stackfood_multivendor_driver/feature/profile/domain/models/record_location_body.dart';
-import 'package:stackfood_multivendor_driver/feature/profile/domain/models/shift_model.dart';
-import 'package:stackfood_multivendor_driver/feature/profile/domain/repositories/profile_repository_interface.dart';
-import 'package:stackfood_multivendor_driver/util/app_constants.dart';
+import 'package:gazzer_delivery/common/models/response_model.dart';
+import 'package:gazzer_delivery/api/api_client.dart';
+import 'package:gazzer_delivery/feature/profile/domain/models/record_location_body.dart';
+import 'package:gazzer_delivery/feature/profile/domain/models/shift_model.dart';
+import 'package:gazzer_delivery/feature/profile/domain/repositories/profile_repository_interface.dart';
+import 'package:gazzer_delivery/util/app_constants.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:get/get.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'dart:async';
-import 'package:stackfood_multivendor_driver/feature/profile/domain/models/profile_model.dart';
+import 'package:gazzer_delivery/feature/profile/domain/models/profile_model.dart';
 import 'package:image_picker/image_picker.dart';
 
 class ProfileRepository implements ProfileRepositoryInterface {

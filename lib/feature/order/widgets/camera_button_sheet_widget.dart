@@ -1,8 +1,8 @@
-import 'package:stackfood_multivendor_driver/feature/order/controllers/order_controller.dart';
-import 'package:stackfood_multivendor_driver/util/dimensions.dart';
-import 'package:stackfood_multivendor_driver/util/styles.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:gazzer_delivery/feature/order/controllers/order_controller.dart';
+import 'package:gazzer_delivery/util/dimensions.dart';
+import 'package:gazzer_delivery/util/styles.dart';
 
 class CameraButtonSheetWidget extends StatelessWidget {
   const CameraButtonSheetWidget({super.key});
@@ -27,50 +27,71 @@ class CameraButtonSheetWidget extends StatelessWidget {
               color: Theme.of(context).disabledColor),
         ),
         const SizedBox(height: Dimensions.paddingSizeLarge),
-        Row(mainAxisAlignment: MainAxisAlignment.spaceEvenly, children: [
-          InkWell(
-            onTap: () {
-              if (Get.isBottomSheetOpen!) {
-                Get.back();
-              }
-              Get.find<OrderController>()
-                  .pickPrescriptionImage(isRemove: false, isCamera: true);
-            },
-            child: Column(children: [
-              Container(
-                padding: const EdgeInsets.all(Dimensions.paddingSizeLarge),
-                decoration: BoxDecoration(
-                    shape: BoxShape.circle,
-                    color: Theme.of(context).primaryColor.withOpacity(0.2)),
-                child: Icon(Icons.camera_alt_outlined,
-                    size: 45, color: Theme.of(context).primaryColor),
-              ),
-              const SizedBox(height: Dimensions.paddingSizeSmall),
-              Text('from_camera'.tr, style: robotoMedium),
-            ]),
-          ),
-          InkWell(
-            onTap: () {
-              if (Get.isBottomSheetOpen!) {
-                Get.back();
-              }
-              Get.find<OrderController>()
-                  .pickPrescriptionImage(isRemove: false, isCamera: false);
-            },
-            child: Column(children: [
-              Container(
-                padding: const EdgeInsets.all(Dimensions.paddingSizeLarge),
-                decoration: BoxDecoration(
-                    shape: BoxShape.circle,
-                    color: Theme.of(context).primaryColor.withOpacity(0.2)),
-                child: Icon(Icons.photo_library_outlined,
-                    size: 45, color: Theme.of(context).primaryColor),
-              ),
-              const SizedBox(height: Dimensions.paddingSizeSmall),
-              Text('from_gallery'.tr, style: robotoMedium),
-            ]),
-          )
-        ]),
+        InkWell(
+          onTap: () {
+            if (Get.isBottomSheetOpen!) {
+              Get.back();
+            }
+            Get.find<OrderController>()
+                .pickPrescriptionImage(isRemove: false, isCamera: true);
+          },
+          child: Column(children: [
+            Container(
+              padding: const EdgeInsets.all(Dimensions.paddingSizeLarge),
+              decoration: BoxDecoration(
+                  shape: BoxShape.circle,
+                  color: Theme.of(context).primaryColor.withOpacity(0.2)),
+              child: Icon(Icons.camera_alt_outlined,
+                  size: 45, color: Theme.of(context).primaryColor),
+            ),
+            const SizedBox(height: Dimensions.paddingSizeSmall),
+            Text('from_camera'.tr, style: robotoMedium),
+          ]),
+        ),
+        // Row(mainAxisAlignment: MainAxisAlignment.spaceEvenly, children: [
+        //   InkWell(
+        //     onTap: () {
+        //       if (Get.isBottomSheetOpen!) {
+        //         Get.back();
+        //       }
+        //       Get.find<OrderController>()
+        //           .pickPrescriptionImage(isRemove: false, isCamera: true);
+        //     },
+        //     child: Column(children: [
+        //       Container(
+        //         padding: const EdgeInsets.all(Dimensions.paddingSizeLarge),
+        //         decoration: BoxDecoration(
+        //             shape: BoxShape.circle,
+        //             color: Theme.of(context).primaryColor.withOpacity(0.2)),
+        //         child: Icon(Icons.camera_alt_outlined,
+        //             size: 45, color: Theme.of(context).primaryColor),
+        //       ),
+        //       const SizedBox(height: Dimensions.paddingSizeSmall),
+        //       Text('from_camera'.tr, style: robotoMedium),
+        //     ]),
+        //   ),
+        //   InkWell(
+        //     onTap: () {
+        //       if (Get.isBottomSheetOpen!) {
+        //         Get.back();
+        //       }
+        //       Get.find<OrderController>()
+        //           .pickPrescriptionImage(isRemove: false, isCamera: false);
+        //     },
+        //     child: Column(children: [
+        //       Container(
+        //         padding: const EdgeInsets.all(Dimensions.paddingSizeLarge),
+        //         decoration: BoxDecoration(
+        //             shape: BoxShape.circle,
+        //             color: Theme.of(context).primaryColor.withOpacity(0.2)),
+        //         child: Icon(Icons.photo_library_outlined,
+        //             size: 45, color: Theme.of(context).primaryColor),
+        //       ),
+        //       const SizedBox(height: Dimensions.paddingSizeSmall),
+        //       Text('from_gallery'.tr, style: robotoMedium),
+        //     ]),
+        //   )
+        // ]),
       ]),
     );
   }

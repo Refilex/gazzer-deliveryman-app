@@ -1,13 +1,13 @@
 import 'package:image_picker/image_picker.dart';
-import 'package:stackfood_multivendor_driver/common/models/response_model.dart';
-import 'package:stackfood_multivendor_driver/api/api_client.dart';
-import 'package:stackfood_multivendor_driver/feature/order/domain/models/ignore_model.dart';
-import 'package:stackfood_multivendor_driver/feature/order/domain/models/order_cancellation_body_model.dart';
-import 'package:stackfood_multivendor_driver/feature/order/domain/models/order_details_model.dart';
-import 'package:stackfood_multivendor_driver/feature/order/domain/models/order_model.dart';
-import 'package:stackfood_multivendor_driver/feature/order/domain/models/update_status_body.dart';
-import 'package:stackfood_multivendor_driver/feature/order/domain/repositories/order_repository_interface.dart';
-import 'package:stackfood_multivendor_driver/feature/order/domain/services/order_service_interface.dart';
+import 'package:gazzer_delivery/api/api_client.dart';
+import 'package:gazzer_delivery/common/models/response_model.dart';
+import 'package:gazzer_delivery/feature/order/domain/models/ignore_model.dart';
+import 'package:gazzer_delivery/feature/order/domain/models/order_cancellation_body_model.dart';
+import 'package:gazzer_delivery/feature/order/domain/models/order_details_model.dart';
+import 'package:gazzer_delivery/feature/order/domain/models/order_model.dart';
+import 'package:gazzer_delivery/feature/order/domain/models/update_status_body.dart';
+import 'package:gazzer_delivery/feature/order/domain/repositories/order_repository_interface.dart';
+import 'package:gazzer_delivery/feature/order/domain/services/order_service_interface.dart';
 
 class OrderService implements OrderServiceInterface {
   final OrderRepositoryInterface orderRepositoryInterface;
@@ -20,8 +20,10 @@ class OrderService implements OrderServiceInterface {
   }
 
   @override
-  Future<PaginatedOrderModel?> getCompletedOrderList(int offset) async {
-    return await orderRepositoryInterface.getCompletedOrderList(offset);
+  Future<PaginatedOrderModel?> getCompletedOrderList(
+      int offset, String orderStatus) async {
+    return await orderRepositoryInterface.getCompletedOrderList(
+        offset, orderStatus);
   }
 
   @override

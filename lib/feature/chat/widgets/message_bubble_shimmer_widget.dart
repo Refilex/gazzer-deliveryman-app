@@ -1,5 +1,5 @@
-import 'package:stackfood_multivendor_driver/feature/chat/controllers/chat_controller.dart';
-import 'package:stackfood_multivendor_driver/util/dimensions.dart';
+import 'package:gazzer_delivery/feature/chat/controllers/chat_controller.dart';
+import 'package:gazzer_delivery/util/dimensions.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:shimmer_animation/shimmer_animation.dart';

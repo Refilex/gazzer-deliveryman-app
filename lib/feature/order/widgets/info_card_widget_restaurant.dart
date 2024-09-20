@@ -1,5 +1,6 @@
 import 'package:gazzer_delivery/common/widgets/custom_image_widget.dart';
 import 'package:gazzer_delivery/feature/order/domain/models/order_model.dart';
+import 'package:gazzer_delivery/feature/splash/controllers/splash_controller.dart';
 import 'package:gazzer_delivery/util/dimensions.dart';
 import 'package:gazzer_delivery/util/styles.dart';
 import 'package:gazzer_delivery/common/widgets/custom_snackbar_widget.dart';
@@ -7,31 +8,15 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:url_launcher/url_launcher_string.dart';
 
-class InfoCardWidget extends StatelessWidget {
-  final String title;
-  final String image;
-  final String? name;
-  final DeliveryAddress? addressModel;
-  final String? phone;
-  final String? latitude;
-  final String? longitude;
+class InfoCardWidgetRestaurant extends StatelessWidget {
   final bool showButton;
-  final bool isDelivery;
-  final OrderModel? orderModel;
+  final Restaurant? restaurant;
   final Function? messageOnTap;
 
-  const InfoCardWidget(
+  const InfoCardWidgetRestaurant(
       {super.key,
-      required this.title,
-      required this.image,
-      required this.name,
-      required this.addressModel,
-      required this.phone,
-      required this.latitude,
-      required this.longitude,
       required this.showButton,
-      this.isDelivery = false,
-      this.orderModel,
+      this.restaurant,
       this.messageOnTap});
 
   @override
@@ -51,16 +36,17 @@ class InfoCardWidget extends StatelessWidget {
       ),
       child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
         const SizedBox(height: Dimensions.paddingSizeSmall),
-        Text(title,
+        Text(restaurant!.name,
             style: robotoRegular.copyWith(
                 fontSize: Dimensions.fontSizeSmall,
                 color: Theme.of(context).disabledColor)),
         const SizedBox(height: Dimensions.paddingSizeSmall),
-        (name != null && name!.isNotEmpty)
+        (restaurant!.name != null && restaurant!.name!.isNotEmpty)
             ? Row(crossAxisAlignment: CrossAxisAlignment.start, children: [
                 ClipOval(
                     child: CustomImageWidget(
-                  image: image,
+                  image:
+                      '${Get.find<SplashController>().configModel!.baseUrls!.restaurantImageUrl}/${restaurant!.logo}',
                   height: 40,
                   width: 40,
                   fit: BoxFit.cover,
@@ -70,59 +56,17 @@ class InfoCardWidget extends StatelessWidget {
                     child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                      Text(name!,
+                      Text(restaurant!.name!,
                           style: robotoRegular.copyWith(
                               fontSize: Dimensions.fontSizeSmall)),
                       const SizedBox(height: Dimensions.paddingSizeExtraSmall),
-                      Text(
-                        addressModel!.address ?? '',
-                        style: robotoRegular.copyWith(
-                            fontSize: Dimensions.fontSizeSmall,
-                            color: Theme.of(context).disabledColor),
-                      ),
-                      isDelivery
-                          ? Wrap(children: [
-                              (addressModel!.streetNumber != null &&
-                                      addressModel!.streetNumber!.isNotEmpty)
-                                  ? Text(
-                                      '${'street_number'.tr}: ${addressModel!.streetNumber!}, ',
-                                      maxLines: 1,
-                                      overflow: TextOverflow.ellipsis,
-                                      style: robotoRegular.copyWith(
-                                          fontSize: Dimensions.fontSizeSmall,
-                                          color: Theme.of(context).hintColor),
-                                    )
-                                  : const SizedBox(),
-                              (addressModel!.house != null &&
-                                      addressModel!.house!.isNotEmpty)
-                                  ? Text(
-                                      '${'house'.tr}: ${addressModel!.house!}, ',
-                                      maxLines: 1,
-                                      overflow: TextOverflow.ellipsis,
-                                      style: robotoRegular.copyWith(
-                                          fontSize: Dimensions.fontSizeSmall,
-                                          color: Theme.of(context).hintColor),
-                                    )
-                                  : const SizedBox(),
-                              (addressModel!.floor != null &&
-                                      addressModel!.floor!.isNotEmpty)
-                                  ? Text(
-                                      '${'floor'.tr}: ${addressModel!.floor!}',
-                                      maxLines: 1,
-                                      overflow: TextOverflow.ellipsis,
-                                      style: robotoRegular.copyWith(
-                                          fontSize: Dimensions.fontSizeSmall,
-                                          color: Theme.of(context).hintColor),
-                                    )
-                                  : const SizedBox(),
-                            ])
-                          : const SizedBox(),
                       showButton
                           ? Row(children: [
                               TextButton.icon(
                                 onPressed: () async {
-                                  if (await canLaunchUrlString('tel:$phone')) {
-                                    launchUrlString('tel:$phone',
+                                  if (await canLaunchUrlString(
+                                      'tel:${restaurant!.phone}')) {
+                                    launchUrlString('tel:${restaurant!.phone}',
                                         mode: LaunchMode.externalApplication);
                                   } else {
                                     showCustomSnackBar(
@@ -139,26 +83,22 @@ class InfoCardWidget extends StatelessWidget {
                                       color: Theme.of(context).primaryColor),
                                 ),
                               ),
-                              orderModel != null
-                                  ? TextButton.icon(
-                                      onPressed:
-                                          messageOnTap as void Function()?,
-                                      icon: Icon(Icons.chat_rounded,
-                                          color: Theme.of(context).primaryColor,
-                                          size: 20),
-                                      label: Text(
-                                        'message'.tr,
-                                        style: robotoRegular.copyWith(
-                                            fontSize: Dimensions.fontSizeSmall,
-                                            color:
-                                                Theme.of(context).primaryColor),
-                                      ),
-                                    )
-                                  : const SizedBox(),
+                              TextButton.icon(
+                                onPressed: messageOnTap as void Function()?,
+                                icon: Icon(Icons.chat_rounded,
+                                    color: Theme.of(context).primaryColor,
+                                    size: 20),
+                                label: Text(
+                                  'message'.tr,
+                                  style: robotoRegular.copyWith(
+                                      fontSize: Dimensions.fontSizeSmall,
+                                      color: Theme.of(context).primaryColor),
+                                ),
+                              ),
                               TextButton.icon(
                                 onPressed: () async {
                                   String url =
-                                      'https://www.google.com/maps/dir/?api=1&destination=$latitude,$longitude&mode=d';
+                                      'https://www.google.com/maps/dir/?api=1&destination=${restaurant!.latitude},${restaurant!.longitude}&mode=d';
                                   if (await canLaunchUrlString(url)) {
                                     await launchUrlString(url,
                                         mode: LaunchMode.externalApplication);
@@ -177,9 +117,12 @@ class InfoCardWidget extends StatelessWidget {
                                 ),
                               ),
                             ])
-                          : const SizedBox(
-                              height: Dimensions.paddingSizeDefault),
+                          :
+                          const SizedBox(
+                              height: Dimensions.paddingSizeExtraLarge),
                     ])),
+
+
               ])
             : Center(
                 child: Padding(

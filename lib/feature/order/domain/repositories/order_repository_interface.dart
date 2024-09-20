@@ -1,10 +1,10 @@
-import 'package:stackfood_multivendor_driver/api/api_client.dart';
-import 'package:stackfood_multivendor_driver/feature/order/domain/models/ignore_model.dart';
-import 'package:stackfood_multivendor_driver/feature/order/domain/models/update_status_body.dart';
-import 'package:stackfood_multivendor_driver/interface/repository_interface.dart';
+import 'package:gazzer_delivery/api/api_client.dart';
+import 'package:gazzer_delivery/feature/order/domain/models/ignore_model.dart';
+import 'package:gazzer_delivery/feature/order/domain/models/update_status_body.dart';
+import 'package:gazzer_delivery/interface/repository_interface.dart';
 
 abstract class OrderRepositoryInterface implements RepositoryInterface {
-  Future<dynamic> getCompletedOrderList(int offset);
+  Future<dynamic> getCompletedOrderList(int offset, String orderStatus);
 
   Future<dynamic> getCurrentOrders();
 

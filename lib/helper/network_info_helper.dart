@@ -1,5 +1,5 @@
 import 'package:connectivity_plus/connectivity_plus.dart';
-import 'package:stackfood_multivendor_driver/feature/splash/controllers/splash_controller.dart';
+import 'package:gazzer_delivery/feature/splash/controllers/splash_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
