@@ -1,4 +1,4 @@
-package com.refilex.gazzer.deliveryapp
+package com.refilex.gazzer.delivery
 
 import android.app.Notification
 import android.app.NotificationChannel

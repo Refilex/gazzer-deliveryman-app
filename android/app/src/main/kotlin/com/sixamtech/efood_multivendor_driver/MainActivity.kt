@@ -1,4 +1,4 @@
-package com.refilex.gazzer.deliveryapp
+package com.refilex.gazzer.delivery
 
 import android.content.Intent
 import android.os.Bundle
